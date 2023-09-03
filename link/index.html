@@ -1,0 +1,1025 @@
+<link rel="stylesheet" href="/js/APlayer.min.css"/><div id="aplayer"></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.js"></script><script type="text/javascript" src="/js/music.js"></script><!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>工具 | Bonjour Hacker</title><meta name="author" content="zi0wi15on"><meta name="copyright" content="zi0wi15on"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="持续收集中，敬请期待 ^_^">
+<meta property="og:type" content="website">
+<meta property="og:title" content="工具">
+<meta property="og:url" content="https://zi0wi15on.top/link/index.html">
+<meta property="og:site_name" content="Bonjour Hacker">
+<meta property="og:description" content="持续收集中，敬请期待 ^_^">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zi0wi15on.top/personal/default_cover.png">
+<meta property="article:published_time" content="2023-02-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-16T07:42:23.486Z">
+<meta property="article:author" content="zi0wi15on">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zi0wi15on.top/personal/default_cover.png"><link rel="shortcut icon" href="/personal/favicon32.ico"><link rel="canonical" href="https://zi0wi15on.top/link/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":30,"languages":{"author":"作者: zi0wi15on","link":"链接: ","source":"来源: Bonjour Hacker","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#868686","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '工具',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-06-16 15:42:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/></pre></li><link rel="preconnect" href="https://T36950RIKQ-dsn.algolia.net" crossorigin /><link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Bonjour Hacker" type="application/atom+xml">
+</head><body><link rel="stylesheet" href="/personal/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/personal/profile.jpg" onerror="onerror=null;src='/personal/404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-screwdriver-wrench"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fingerprint"></i><span> 自制</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/terminal/"><i class="fa-fw fas fa-person-digging"></i><span> 开发中</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/personal/tools.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Bonjour Hacker"><img class="site-icon" src="/personal/hacker.png"/></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-screwdriver-wrench"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fingerprint"></i><span> 自制</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/terminal/"><i class="fa-fw fas fa-person-digging"></i><span> 开发中</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">工具</h1></div></header><main class="layout hide-aside" id="content-inner"><div id="page"><div id="article-container"><div class="flink"><h2 id="nbsp-nbsp-影视娱乐"><a href="#nbsp-nbsp-影视娱乐" class="headerlink" title="&nbsp;&nbsp;影视娱乐"></a><i class="fa-brands fa-youtube"></i>&nbsp;&nbsp;影视娱乐</h2> <div class="flink-list">
+  <div class="flink-list-item">
+    <a href="https://www.zbkk.net/zbktype/1.html" title="真不卡影院" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.zbkk.net/statics/img/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="真不卡影院" />
+      </div>
+      <div class="flink-item-name">真不卡影院</div> 
+      <div class="flink-item-desc" title="忙里偷闲看点片">忙里偷闲看点片</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.wangfei.tv/vodtype/dy.html" title="网飞TV" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.wangfei.tv/mxtheme/images/favicon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="网飞TV" />
+      </div>
+      <div class="flink-item-name">网飞TV</div> 
+      <div class="flink-item-desc" title="丰富的影视资源">丰富的影视资源</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://mjw21.com/" title="91美剧网" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://mjw21.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="91美剧网" />
+      </div>
+      <div class="flink-item-name">91美剧网</div> 
+      <div class="flink-item-desc" title="此91非彼“91”，专注美剧影视">此91非彼“91”，专注美剧影视</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.luxiangwu.com/nbaluxiang/" title="NBA录像吧" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.Q9sHHCfMSwB-_uK2O8kJzQAAAA?w=114&h=128&c=7&r=0&o=5&dpr=1.8&pid=1.7" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="NBA录像吧" />
+      </div>
+      <div class="flink-item-name">NBA录像吧</div> 
+      <div class="flink-item-desc" title="又想早起学习又撞上NBA精彩比赛？放心有完整回放">又想早起学习又撞上NBA精彩比赛？放心有完整回放</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.mdluxiang.com/" title="麦豆录像网" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.mdluxiang.com/zb_users/upload/2022/01/202201271643262320126289.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="麦豆录像网" />
+      </div>
+      <div class="flink-item-name">麦豆录像网</div> 
+      <div class="flink-item-desc" title="备用NBA完整回放">备用NBA完整回放</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.yoozhibo.net/lanqiu/" title="优直播" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.yoozhibo.net/images/default.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="优直播" />
+      </div>
+      <div class="flink-item-name">优直播</div> 
+      <div class="flink-item-desc" title="各项体育赛事直播链接聚合">各项体育赛事直播链接聚合</div>
+    </a>
+  </div></div><h2 id="nbsp-nbsp-在线编程"><a href="#nbsp-nbsp-在线编程" class="headerlink" title="&nbsp;&nbsp;在线编程"></a><i class="fa-solid fa-code"></i>&nbsp;&nbsp;在线编程</h2> <div class="flink-list">
+  <div class="flink-list-item">
+    <a href="https://www.onlinegdb.com/" title="OnlineGDB" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.onlinegdb.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="OnlineGDB" />
+      </div>
+      <div class="flink-item-name">OnlineGDB</div> 
+      <div class="flink-item-desc" title="功能非常全面，支持断点，访问速度略慢">功能非常全面，支持断点，访问速度略慢</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://gcc.godbolt.org/" title="Compiler Explorer" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://gcc.godbolt.org/favicon.ico?v=1" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Compiler Explorer" />
+      </div>
+      <div class="flink-item-name">Compiler Explorer</div> 
+      <div class="flink-item-desc" title="支持vim与汇编结果查看">支持vim与汇编结果查看</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://code.y444.cn/php" title="Code.y444" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://code.y444.cn/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Code.y444" />
+      </div>
+      <div class="flink-item-name">Code.y444</div> 
+      <div class="flink-item-desc" title="访问快，界面简洁">访问快，界面简洁</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://curlconverter.com/" title="Curl Converter" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://curlconverter.com/apple-touch-icon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Curl Converter" />
+      </div>
+      <div class="flink-item-name">Curl Converter</div> 
+      <div class="flink-item-desc" title="将curl命令转换为Python、JavaScript等">将curl命令转换为Python、JavaScript等</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://app.diagrams.net/" title="diagrams" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://app.diagrams.net/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="diagrams" />
+      </div>
+      <div class="flink-item-name">diagrams</div> 
+      <div class="flink-item-desc" title="在线制作流程图，可生成带透明度的.png图像等">在线制作流程图，可生成带透明度的.png图像等</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="http://www.codeinword.com/" title="CodeInWord" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.icode.org.cn/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="CodeInWord" />
+      </div>
+      <div class="flink-item-name">CodeInWord</div> 
+      <div class="flink-item-desc" title="在word中优雅展现的代码、代码高亮、代码格式化">在word中优雅展现的代码、代码高亮、代码格式化</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://quickref.cn/" title="Quick Reference" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%221em%22%20width%3D%221em%22%3E%20%3Cpath%20d%3D%22m21.66%2010.44-.98%204.18c-.84%203.61-2.5%205.07-5.62%204.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2%201.17-2.42%203.16-3.07%206.5-2.28l1.67.39c4.19.98%205.47%203.05%204.49%207.23Z%22%20fill%3D%22%23c9d1d9%22%2F%3E%20%3Cpath%20d%3D%22M15.06%2019.39c-.62.42-1.4.77-2.35%201.08l-1.58.52c-3.97%201.28-6.06.21-7.35-3.76L2.5%2013.28c-1.28-3.97-.22-6.07%203.75-7.35l1.58-.52c.41-.13.8-.24%201.17-.31-.3.61-.54%201.35-.74%202.2l-.98%204.19c-.98%204.18.31%206.24%204.48%207.23l1.68.4c.58.14%201.12.23%201.62.27Zm2.43-8.88c-.06%200-.12-.01-.19-.02l-4.85-1.23a.75.75%200%200%201%20.37-1.45l4.85%201.23a.748.748%200%200%201-.18%201.47Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3Cpath%20d%3D%22M14.56%2013.89c-.06%200-.12-.01-.19-.02l-2.91-.74a.75.75%200%200%201%20.37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3C%2Fsvg%3E" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Quick Reference" />
+      </div>
+      <div class="flink-item-name">Quick Reference</div> 
+      <div class="flink-item-desc" title="编程语言简要参考，提供了使用例子">编程语言简要参考，提供了使用例子</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.linuxcool.com/" title="Linux命令大全手册" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.linuxcool.com/wp-content/uploads/2019/03/cropped-redhat-192x192.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Linux命令大全手册" />
+      </div>
+      <div class="flink-item-name">Linux命令大全手册</div> 
+      <div class="flink-item-desc" title="很棒的Linux命令参考索引">很棒的Linux命令参考索引</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.educoder.net/" title="头歌实践教学平台" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.educoder.net/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="头歌实践教学平台" />
+      </div>
+      <div class="flink-item-name">头歌实践教学平台</div> 
+      <div class="flink-item-desc" title="编程语言的任务式在线实践">编程语言的任务式在线实践</div>
+    </a>
+  </div></div><h2 id="nbsp-nbsp-信息搜集"><a href="#nbsp-nbsp-信息搜集" class="headerlink" title="&nbsp;&nbsp;信息搜集"></a><i class="fa-brands fa-searchengin"></i>&nbsp;&nbsp;信息搜集</h2> <div class="flink-list">
+  <div class="flink-list-item">
+    <a href="https://www.exploit-db.com/" title="Exploit Database" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.exploit-db.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Exploit Database" />
+      </div>
+      <div class="flink-item-name">Exploit Database</div> 
+      <div class="flink-item-desc" title="可利用漏洞库">可利用漏洞库</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://fofa.info/" title="Fofa" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://fofa.info/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Fofa" />
+      </div>
+      <div class="flink-item-name">Fofa</div> 
+      <div class="flink-item-desc" title="主打资产收集">主打资产收集</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.shodan.io/" title="Shodan" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.shodan.io/static/img/apple-touch-icon-192.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Shodan" />
+      </div>
+      <div class="flink-item-name">Shodan</div> 
+      <div class="flink-item-desc" title="针对网络设备的搜索引擎">针对网络设备的搜索引擎</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.zoomeye.org/" title="Zoomeye" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.zoomeye.org/static/public/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Zoomeye" />
+      </div>
+      <div class="flink-item-name">Zoomeye</div> 
+      <div class="flink-item-desc" title="针对网络空间的搜索引擎，支持公网设备指纹检索和Web指纹检索">针对网络空间的搜索引擎，支持公网设备指纹检索和Web指纹检索</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://search.censys.io/" title="Censys" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://search.censys.io/static/img/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Censys" />
+      </div>
+      <div class="flink-item-name">Censys</div> 
+      <div class="flink-item-desc" title="搜索所有联网设备（IPv4地址空间）并收集相关的信息">搜索所有联网设备（IPv4地址空间）并收集相关的信息</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://0.zone/i?invite_code=C3LK4O" title="0Zone攻击面管理平台" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://0.zone/favicon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="0Zone攻击面管理平台" />
+      </div>
+      <div class="flink-item-name">0Zone攻击面管理平台</div> 
+      <div class="flink-item-desc" title="供红蓝队使用，为防御者提供攻击者视角下的企业外部攻击面数据，减少攻防信息差，以促进企业攻击面的收敛和管理">供红蓝队使用，为防御者提供攻击者视角下的企业外部攻击面数据，减少攻防信息差，以促进企业攻击面的收敛和管理</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.whois.com/whois/" title="Whois" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.whois.com/images/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Whois" />
+      </div>
+      <div class="flink-item-name">Whois</div> 
+      <div class="flink-item-desc" title="域名与ip相关信息查询">域名与ip相关信息查询</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.whoxy.com/" title="Whoxy" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.whoxy.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Whoxy" />
+      </div>
+      <div class="flink-item-name">Whoxy</div> 
+      <div class="flink-item-desc" title="支持Whois History">支持Whois History</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://whoer.net/zh" title="Whoer" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.whoer.net/favicon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Whoer" />
+      </div>
+      <div class="flink-item-name">Whoer</div> 
+      <div class="flink-item-desc" title="主机网络状态信息初诊">主机网络状态信息初诊</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://versus.com/cn" title="versus" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://images.versus.io/favicon/apple-touch-icon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="versus" />
+      </div>
+      <div class="flink-item-name">versus</div> 
+      <div class="flink-item-desc" title="万物皆可对比">万物皆可对比</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://zh.wikipedia.org/" title="维基百科" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://s2.loli.net/2023/02/28/iDQI4jVN2SKh1lo.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="维基百科" />
+      </div>
+      <div class="flink-item-name">维基百科</div> 
+      <div class="flink-item-desc" title="自由的百科全书">自由的百科全书</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://beian.miit.gov.cn/#/Integrated/index" title="ICP/IP地址/域名信息备案管理系统" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://beian.miit.gov.cn/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="ICP/IP地址/域名信息备案管理系统" />
+      </div>
+      <div class="flink-item-name">ICP/IP地址/域名信息备案管理系统</div> 
+      <div class="flink-item-desc" title="ICP备案查询">ICP备案查询</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://aiqicha.baidu.com/" title="爱企查" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://xinpub.cdn.bcebos.com/static/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="爱企查" />
+      </div>
+      <div class="flink-item-name">爱企查</div> 
+      <div class="flink-item-desc" title="工商数据搜集">工商数据搜集</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.qcc.com/" title="企查查" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://qcc-static.qcc.com/resources/web/omaterial/favicon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="企查查" />
+      </div>
+      <div class="flink-item-name">企查查</div> 
+      <div class="flink-item-desc" title="工商数据搜集">工商数据搜集</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.tianyancha.com/" title="天眼查" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://cdn.tianyancha.com/wap/images/18blue/weixinlogo.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="天眼查" />
+      </div>
+      <div class="flink-item-name">天眼查</div> 
+      <div class="flink-item-desc" title="工商数据搜集">工商数据搜集</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.qixin.com/" title="启信宝" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.qixin.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="启信宝" />
+      </div>
+      <div class="flink-item-name">启信宝</div> 
+      <div class="flink-item-desc" title="工商数据搜集">工商数据搜集</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.xiaolanben.com/pc" title="小蓝本" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://api.u51.com/nodejs-xiaolanben-com/public/logo.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="小蓝本" />
+      </div>
+      <div class="flink-item-name">小蓝本</div> 
+      <div class="flink-item-desc" title="工商数据搜集">工商数据搜集</div>
+    </a>
+  </div></div><h2 id="nbsp-nbsp-压缩转换"><a href="#nbsp-nbsp-压缩转换" class="headerlink" title="&nbsp;&nbsp;压缩转换"></a><i class="fa-solid fa-photo-film"></i>&nbsp;&nbsp;压缩转换</h2> <div class="flink-list">
+  <div class="flink-list-item">
+    <a href="https://www.sojson.com/" title="SOJSON" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.sojson.com/sojson/favicon64.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="SOJSON" />
+      </div>
+      <div class="flink-item-name">SOJSON</div> 
+      <div class="flink-item-desc" title="较为全面的工具集：JSON在线工具，加/解密，压缩/格式化，前端调色、换算转换、二维码、正则、站长工具等">较为全面的工具集：JSON在线工具，加/解密，压缩/格式化，前端调色、换算转换、二维码、正则、站长工具等</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.camscanner.com/zh/pdf-to-word" title="扫描全能王" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.camscanner.com/favicon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="扫描全能王" />
+      </div>
+      <div class="flink-item-name">扫描全能王</div> 
+      <div class="flink-item-desc" title="专业文档在线转换与处理">专业文档在线转换与处理</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.cleverpdf.com/cn/pdf-to-word" title="CleverPDF" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.cleverpdf.com/statics/images/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="CleverPDF" />
+      </div>
+      <div class="flink-item-name">CleverPDF</div> 
+      <div class="flink-item-desc" title="针对PDF的各种转换">针对PDF的各种转换</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://yasuo.xunjiepdf.com/word/" title="迅捷在线压缩" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://yasuo.xunjiepdf.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="迅捷在线压缩" />
+      </div>
+      <div class="flink-item-name">迅捷在线压缩</div> 
+      <div class="flink-item-desc" title="可对文档进行压缩，便于上传至一些有大小限制的网站">可对文档进行压缩，便于上传至一些有大小限制的网站</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://tinypng.com/" title="TinyPNG" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://tinypng.com/images/apple-touch-icon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="TinyPNG" />
+      </div>
+      <div class="flink-item-name">TinyPNG</div> 
+      <div class="flink-item-desc" title="合适化图像压缩">合适化图像压缩</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.compress2go.com/zh/compress-png" title="COMPRESS2GO" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.compress2go.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="COMPRESS2GO" />
+      </div>
+      <div class="flink-item-name">COMPRESS2GO</div> 
+      <div class="flink-item-desc" title="图像压缩品质可选设置">图像压缩品质可选设置</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.autotracer.org/" title="Autotracer" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.autotracer.org/res/logo.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Autotracer" />
+      </div>
+      <div class="flink-item-name">Autotracer</div> 
+      <div class="flink-item-desc" title="图片生成矢量图">图片生成矢量图</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.aigei.com/bgremover/" title="BgRemover" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://cdn-sqn.aigei.com/assets/site/img/icon/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="BgRemover" />
+      </div>
+      <div class="flink-item-name">BgRemover</div> 
+      <div class="flink-item-desc" title="在线图片去底工具-背景变透明|图片底色去除去掉">在线图片去底工具-背景变透明|图片底色去除去掉</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://audio.worthsee.com/" title="WORTHSEE音频编辑工具箱" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://audio.worthsee.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="WORTHSEE音频编辑工具箱" />
+      </div>
+      <div class="flink-item-name">WORTHSEE音频编辑工具箱</div> 
+      <div class="flink-item-desc" title="音频格式转换、裁剪、升降调">音频格式转换、裁剪、升降调</div>
+    </a>
+  </div></div><h2 id="nbsp-nbsp-资源获取"><a href="#nbsp-nbsp-资源获取" class="headerlink" title="&nbsp;&nbsp;资源获取"></a><i class="fa-solid fa-cloud-arrow-down"></i>&nbsp;&nbsp;资源获取</h2> <div class="flink-list">
+  <div class="flink-list-item">
+    <a href="https://link.gimhoy.com/" title="网盘直链获取工具" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://cdn.static.gimhoy.com/frontend/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="网盘直链获取工具" />
+      </div>
+      <div class="flink-item-name">网盘直链获取工具</div> 
+      <div class="flink-item-desc" title="方便资源分享与展示">方便资源分享与展示</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://api.aa1.cn/" title="API" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://api.aa1.cn/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="API" />
+      </div>
+      <div class="flink-item-name">API</div> 
+      <div class="flink-item-desc" title="免费API获取">免费API获取</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://wallhaven.cc/" title="wallhaven" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://wallhaven.cc/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="wallhaven" />
+      </div>
+      <div class="flink-item-name">wallhaven</div> 
+      <div class="flink-item-desc" title="支持各种选项检索的好活儿壁纸网">支持各种选项检索的好活儿壁纸网</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://wallpapercave.com/" title="WallpaperCave" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://wallpapercave.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="WallpaperCave" />
+      </div>
+      <div class="flink-item-name">WallpaperCave</div> 
+      <div class="flink-item-desc" title="大尺寸、高质量的精美壁纸库">大尺寸、高质量的精美壁纸库</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://wall.alphacoders.com/?lang=Chinese" title="Wallpaper Abyss" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://static.alphacoders.com/icons/wallpaper/apple-touch-icon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Wallpaper Abyss" />
+      </div>
+      <div class="flink-item-name">Wallpaper Abyss</div> 
+      <div class="flink-item-desc" title="同样不错的壁纸合集，游戏壁纸居多">同样不错的壁纸合集，游戏壁纸居多</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://fontawesome.com/icons" title="Font Awesome" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://fontawesome.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Font Awesome" />
+      </div>
+      <div class="flink-item-name">Font Awesome</div> 
+      <div class="flink-item-desc" title="各种简约而不简朴的icon图标">各种简约而不简朴的icon图标</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://emojixd.com/" title="Emojixd" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://emojixd.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Emojixd" />
+      </div>
+      <div class="flink-item-name">Emojixd</div> 
+      <div class="flink-item-desc" title="支持网页展示的表情复制">支持网页展示的表情复制</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://sunpma.com/other/musicss/" title="musicss" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://sunpma.com/other/musicss/static/img/apple-touch-icon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="musicss" />
+      </div>
+      <div class="flink-item-name">musicss</div> 
+      <div class="flink-item-desc" title="音乐搜索引擎">音乐搜索引擎</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.9ku.com/" title="九酷音乐" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.9ku.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="九酷音乐" />
+      </div>
+      <div class="flink-item-name">九酷音乐</div> 
+      <div class="flink-item-desc" title="可下载音乐歌词.lrc">可下载音乐歌词.lrc</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="http://www.23ape.net/" title="23ape" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="http://www.23ape.net/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="23ape" />
+      </div>
+      <div class="flink-item-name">23ape</div> 
+      <div class="flink-item-desc" title="FLAC、APE无损音乐下载">FLAC、APE无损音乐下载</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.fonts.net.cn/" title="字体天下" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.fonts.net.cn/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="字体天下" />
+      </div>
+      <div class="flink-item-name">字体天下</div> 
+      <div class="flink-item-desc" title="提供中文字体、手写字体、英文字体、图形字体等各种字体的高速免费下载和在线预览服务">提供中文字体、手写字体、英文字体、图形字体等各种字体的高速免费下载和在线预览服务</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="http://www.ucdrs.superlib.net/" title="全国图书馆参考咨询联盟" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://ts1.cn.mm.bing.net/th/id/R-C.864cf7aaaeee768f531014c76325512f?rik=BC8KHWbz4GCpUQ&riu=http%3a%2f%2fpic.baike.soso.com%2fp%2f20131204%2f20131204111156-1095161626.jpg&ehk=Fxr5%2bRXTWEaOUPvO68oRwnEyh0q8nGjLwqFtZ16cC1w%3d&risl=&pid=ImgRaw&r=0" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="全国图书馆参考咨询联盟" />
+      </div>
+      <div class="flink-item-name">全国图书馆参考咨询联盟</div> 
+      <div class="flink-item-desc" title="网络图书馆">网络图书馆</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.nstl.gov.cn/" title="国家科技数字图书馆" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.nstl.gov.cn/img/logo.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="国家科技数字图书馆" />
+      </div>
+      <div class="flink-item-name">国家科技数字图书馆</div> 
+      <div class="flink-item-desc" title="网络图书馆">网络图书馆</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://developer.aliyun.com/mirror/?lang=zh-CN" title="阿里巴巴开源镜像站" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://img.alicdn.com/tfs/TB1_ZXuNcfpK1RjSZFOXXa6nFXa-32-32.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="阿里巴巴开源镜像站" />
+      </div>
+      <div class="flink-item-name">阿里巴巴开源镜像站</div> 
+      <div class="flink-item-desc" title="OPSX镜像站,开源软件,系统镜像,镜像下载">OPSX镜像站,开源软件,系统镜像,镜像下载</div>
+    </a>
+  </div></div><h2 id="nbsp-nbsp-其他工具"><a href="#nbsp-nbsp-其他工具" class="headerlink" title="&nbsp;&nbsp;其他工具"></a><i class="fa-solid fa-compass-drafting"></i>&nbsp;&nbsp;其他工具</h2> <div class="flink-list">
+  <div class="flink-list-item">
+    <a href="https://s.threatbook.com/" title="微步云沙箱" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://s.threatbook.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="微步云沙箱" />
+      </div>
+      <div class="flink-item-name">微步云沙箱</div> 
+      <div class="flink-item-desc" title="支持近70种Windows/Linux常见文件类型分析，涵盖可执行文件、脚本、文档、压缩文件、邮件格式等">支持近70种Windows/Linux常见文件类型分析，涵盖可执行文件、脚本、文档、压缩文件、邮件格式等</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.virustotal.com/gui/home/upload" title="virustotal" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.virustotal.com/gui/images/favicon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="virustotal" />
+      </div>
+      <div class="flink-item-name">virustotal</div> 
+      <div class="flink-item-desc" title="分析可疑文件、域名、ip和url，以检测恶意软件和其他违规行为，并自动与安全社区共享">分析可疑文件、域名、ip和url，以检测恶意软件和其他违规行为，并自动与安全社区共享</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://cybermap.kaspersky.com/cn" title="Kaspersky Cybermap" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://cybermap.kaspersky.com/images/Kaspersky_Web_Favicon_256x256.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Kaspersky Cybermap" />
+      </div>
+      <div class="flink-item-name">Kaspersky Cybermap</div> 
+      <div class="flink-item-desc" title="传说中很炫酷的网络威胁实时地图">传说中很炫酷的网络威胁实时地图</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.zaixiankaoshi.com/home/" title="考试宝" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://resource.zaixiankaoshi.com/pc/favicon.ico?1" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="考试宝" />
+      </div>
+      <div class="flink-item-name">考试宝</div> 
+      <div class="flink-item-desc" title="刷题利器，支持导入多种题库与图片">刷题利器，支持导入多种题库与图片</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.wikihow.com/Main-Page" title="wikihow" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.wikihow.com/favicon_round.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="wikihow" />
+      </div>
+      <div class="flink-item-name">wikihow</div> 
+      <div class="flink-item-desc" title="让它来教教你怎么做">让它来教教你怎么做</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://openai-openai-detector--nx2r9.hf.space/" title="GPT-2文本输出检测器" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.cnblogs.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="GPT-2文本输出检测器" />
+      </div>
+      <div class="flink-item-name">GPT-2文本输出检测器</div> 
+      <div class="flink-item-desc" title="图灵测试">图灵测试</div>
+    </a>
+  </div></div><h2 id="nbsp-nbsp-论坛社区"><a href="#nbsp-nbsp-论坛社区" class="headerlink" title="&nbsp;&nbsp;论坛社区"></a><i class="fa-solid fa-user-secret"></i>&nbsp;&nbsp;论坛社区</h2> <div class="flink-list">
+  <div class="flink-list-item">
+    <a href="https://forum.ywhack.com/bountytips.php" title="棱角社区" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://forum.ywhack.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="棱角社区" />
+      </div>
+      <div class="flink-item-name">棱角社区</div> 
+      <div class="flink-item-desc" title="在线 BugBountyTips 聚合，以及整理&开发的一些方便快捷类的工具">在线 BugBountyTips 聚合，以及整理&开发的一些方便快捷类的工具</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://cn-sec.com/archives/category/%e5%ae%89%e5%85%a8%e5%b7%a5%e5%85%b7" title="CN-Sec" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://cn-sec.com/images_cnsec/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="CN-Sec" />
+      </div>
+      <div class="flink-item-name">CN-Sec</div> 
+      <div class="flink-item-desc" title="聚合安全工具,存储安全技术文章,融合安全最新讯息">聚合安全工具,存储安全技术文章,融合安全最新讯息</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.freebuf.com/" title="FreeBuf" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.freebuf.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="FreeBuf" />
+      </div>
+      <div class="flink-item-name">FreeBuf</div> 
+      <div class="flink-item-desc" title="斗象科技旗下交流与分享安全技术的社区">斗象科技旗下交流与分享安全技术的社区</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.52pojie.cn/" title="52pojie" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://avatar.52pojie.cn/images/noavatar_middle.gif" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="52pojie" />
+      </div>
+      <div class="flink-item-name">52pojie</div> 
+      <div class="flink-item-desc" title="老牌安全论坛，致力软件破解">老牌安全论坛，致力软件破解</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.pediy.com/" title="看雪论坛" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://ts1.cn.mm.bing.net/th/id/R-C.6ff325e2ab94cfa51d678943808345b0?rik=045603wmD6AGdQ&riu=http%3a%2f%2fwww.jishu5.com%2fzb_users%2fupload%2f2019%2f11%2f201911201574240171673139.ico&ehk=EvDX7cWgAg89OTp1F8UydnT2J%2be0YVgy4bEdU8RBuMc%3d&risl=&pid=ImgRaw&r=0" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="看雪论坛" />
+      </div>
+      <div class="flink-item-name">看雪论坛</div> 
+      <div class="flink-item-desc" title="软件安全技术交流场所，以及“看雪知识库”">软件安全技术交流场所，以及“看雪知识库”</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.ichunqiu.com/battalion?t=1" title="i春秋" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://static2.ichunqiu.com/icq/resources/images/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="i春秋" />
+      </div>
+      <div class="flink-item-name">i春秋</div> 
+      <div class="flink-item-desc" title="国内著名网络安全学习平台之一">国内著名网络安全学习平台之一</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="http://www.hetianlab.com/pages/CTFLaboratory.jsp" title="合天网安" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.hetianlab.com/favicon.ico?9c1eda76" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="合天网安" />
+      </div>
+      <div class="flink-item-name">合天网安</div> 
+      <div class="flink-item-desc" title="国内著名网络安全学习平台之一">国内著名网络安全学习平台之一</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.anquanke.com/" title="安全客" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://s3.ssl.qhres2.com/static/02b5158bbb6adeac.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="安全客" />
+      </div>
+      <div class="flink-item-name">安全客</div> 
+      <div class="flink-item-desc" title="提供权威信息发布的漏洞信息,发布安全资讯,分享安全知识">提供权威信息发布的漏洞信息,发布安全资讯,分享安全知识</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://stackoverflow.com/" title="Stack Overflow" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://s2.loli.net/2023/02/28/IpSeKUnx7B82mfl.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Stack Overflow" />
+      </div>
+      <div class="flink-item-name">Stack Overflow</div> 
+      <div class="flink-item-desc" title="技术之家">技术之家</div>
+    </a>
+  </div></div><h2 id="nbsp-nbsp-网安竞技"><a href="#nbsp-nbsp-网安竞技" class="headerlink" title="&nbsp;&nbsp;网安竞技"></a><i class="fa-solid fa-flag-checkered"></i>&nbsp;&nbsp;网安竞技</h2> <div class="flink-list">
+  <div class="flink-list-item">
+    <a href="https://src.sjtu.edu.cn/" title="eduSRC" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://src.sjtu.edu.cn/static/img/main.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="eduSRC" />
+      </div>
+      <div class="flink-item-name">eduSRC</div> 
+      <div class="flink-item-desc" title="教育漏洞报告平台">教育漏洞报告平台</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://ctf-wiki.org/" title="CTF wiki" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://ctf-wiki.org/assets/images/favicon.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="CTF wiki" />
+      </div>
+      <div class="flink-item-name">CTF wiki</div> 
+      <div class="flink-item-desc" title="网安入门wiki">网安入门wiki</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://overthewire.org/wargames/" title="Wargames" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://overthewire.org/img/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="Wargames" />
+      </div>
+      <div class="flink-item-name">Wargames</div> 
+      <div class="flink-item-desc" title="外文，知识涵盖Linux命令、web安全、密码学、系统安全、逆向、代码审计等等">外文，知识涵盖Linux命令、web安全、密码学、系统安全、逆向、代码审计等等</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://ctftime.org/" title="CTF TIME" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://ctftime.org/static/images/ctftime-logo-avatar.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="CTF TIME" />
+      </div>
+      <div class="flink-item-name">CTF TIME</div> 
+      <div class="flink-item-desc" title="CTF赛事汇总">CTF赛事汇总</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://adworld.xctf.org.cn/home/index" title="XCTF攻防世界" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="data:image/png;base64,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" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="XCTF攻防世界" />
+      </div>
+      <div class="flink-item-name">XCTF攻防世界</div> 
+      <div class="flink-item-desc" title="博主较为推荐的学习与竞赛平台，平时闲着就上去刷题娱乐">博主较为推荐的学习与竞赛平台，平时闲着就上去刷题娱乐</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.ctfhub.com/#/calendar" title="CTFHub" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.ctfhub.com/favico.png" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="CTFHub" />
+      </div>
+      <div class="flink-item-name">CTFHub</div> 
+      <div class="flink-item-desc" title="界面简洁舒服，少即是多">界面简洁舒服，少即是多</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://www.bihuoedu.com/ctf/" title="必火CTF靶场" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.bihuoedu.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="必火CTF靶场" />
+      </div>
+      <div class="flink-item-name">必火CTF靶场</div> 
+      <div class="flink-item-desc" title="排版清晰，常见渗透操作提供教学，链接直达CTF比赛模拟">排版清晰，常见渗透操作提供教学，链接直达CTF比赛模拟</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://buuoj.cn/match/matches" title="BUUCTF" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://buuoj.cn/themes/buu_core/static/img/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="BUUCTF" />
+      </div>
+      <div class="flink-item-name">BUUCTF</div> 
+      <div class="flink-item-desc" title="北京联合大学CTF，时常有公开赛，有训练场提供">北京联合大学CTF，时常有公开赛，有训练场提供</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://ctf.bugku.com/" title="BugkuCTF" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://ctf.bugku.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="BugkuCTF" />
+      </div>
+      <div class="flink-item-name">BugkuCTF</div> 
+      <div class="flink-item-desc" title="小清新可爱风界面，时常会上传新题练手">小清新可爱风界面，时常会上传新题练手</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="http://new.catf1ag.cn/main" title="catf1ag" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="http://catf1ag.cn/img/hubu.91a5ebc6.jpg" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="catf1ag" />
+      </div>
+      <div class="flink-item-name">catf1ag</div> 
+      <div class="flink-item-desc" title="同样可爱风界面，misc和web题偏多">同样可爱风界面，misc和web题偏多</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://hack.zkaq.cn/?a=battle" title="掌控者-封神台" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://hack.zkaq.cn/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="掌控者-封神台" />
+      </div>
+      <div class="flink-item-name">掌控者-封神台</div> 
+      <div class="flink-item-desc" title="提供较多演练靶场，部分收费">提供较多演练靶场，部分收费</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://xss.haozi.me/" title="XSS弹窗专项练习" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://www.cnblogs.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="XSS弹窗专项练习" />
+      </div>
+      <div class="flink-item-name">XSS弹窗专项练习</div> 
+      <div class="flink-item-desc" title="XSS的弹窗挑战，一共13关">XSS的弹窗挑战，一共13关</div>
+    </a>
+  </div>
+  <div class="flink-list-item">
+    <a href="https://monyer.com/game/game1/" title="网安小游戏" target="_blank">
+      <div class="flink-item-icon">
+        <img class="no-lightbox" src="https://monyer.com/favicon.ico" onerror='this.onerror=null;this.src="/personal/404.gif"' alt="网安小游戏" />
+      </div>
+      <div class="flink-item-name">网安小游戏</div> 
+      <div class="flink-item-desc" title="需要有JS加解密基础，SQL注入基本常识等">需要有JS加解密基础，SQL注入基本常识等</div>
+    </a>
+  </div></div><p><br align="center"></p>
+<h2 align="center">持续收集中，敬请期待 ^_^</h2>
+</div></div></div></main><footer id="footer" style="background-image: url('/personal/tools.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 By zi0wi15on</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.zi0wi15on.top/">back to HOME</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="8485130843" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-autoplay="true" data-preload="none" data-order="random" data-listfolded="true" data-lrctype="-1"> </div><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script> - <script type="text/x-mathjax-config">MathJax.Hub.Config({menuSettings:{zoom:"None"},showMathMenu:false,jax:["input/TeX","output/CommonHTML"],extensions:["tex2jax.js"],TeX:{extensions:["AMSmath.js","AMSsymbols.js"],equationNumbers:{autoNumber:"AMS"}},tex2jax:{inlineMath:[["\\(", "\\)"]],displayMath:[["\\[", "\\]"]]}});</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="EXP,payload,shellcode,社会工程学,蓝队,CTF,AWD,Misc,Crypto,Reverse,Pwn,Mobile,Flag,注入攻击,BruteForce,rockyou,脱壳,撞库,免杀,反序列化,应急响应,代码审计,数字取证,可信计算只因,whois,POC测试,XSS,SSRF,钓鲸,DDoS,WebShell,访问控制,CMS,溯源反制,IPS,CA,IoT,Hook,kernel,RSA,AES,Hash,CISP,0day,Petya,log4j,RCE,逻辑漏洞,OWASP Top10,SSRF,XSS,永恒之蓝,熊猫烧香,BurpSuite,Hashcat,Nessus,Nmap,MSF,OllyDbg,IDA,PEiD,BlackArch,Kali,Mr.Robot,凯文·米特尼克,zi0wi15on" data-fontsize="20px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="docsearch-wrap"><div id="docsearch" style="display:none"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css/dist/style.min.css"/><script src="https://cdn.jsdelivr.net/npm/@docsearch/js/dist/umd/index.min.js"></script><script>(() => {
+  docsearch(Object.assign({
+    appId: 'T36950RIKQ',
+    apiKey: '31638accf024d9218397ec9e3d5fb686',
+    indexName: 'zi0wi15on',
+    container: '#docsearch',
+  }, null))
+
+
+  const searchClickFn = () => {
+    document.querySelector('#search-button > .search').addEventListener('click', () => {
+      document.querySelector('.DocSearch-Button').click()
+    })
+  }
+
+  searchClickFn()
+  window.addEventListener('pjax:complete', searchClickFn)
+})()</script></div></body></html>

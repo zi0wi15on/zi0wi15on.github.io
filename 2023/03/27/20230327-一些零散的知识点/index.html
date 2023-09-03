@@ -1,0 +1,323 @@
+<link rel="stylesheet" href="/js/APlayer.min.css"/><div id="aplayer"></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.js"></script><script type="text/javascript" src="/js/music.js"></script><!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>一些零散的知识点 | Bonjour Hacker</title><meta name="author" content="zi0wi15on"><meta name="copyright" content="zi0wi15on"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NTFS vs FAT32FAT32    4GB  由于FAT32的32位表项只能存储4字节的簇号，每个簇的大小是由文件系统决定的。例如，在FAT32文件系统中，如果每个簇的大小为4KB，则最大的文件大小为4GB（即4KB * 1,048,576个簇）。如果需要存储更大的文件，则需要将文件系统格式化为更高级的文件系统，如NTFS  NTFS    权限控制、日志文件 访问控制列表ACL vs 访">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些零散的知识点">
+<meta property="og:url" content="https://zi0wi15on.top/2023/03/27/20230327-%E4%B8%80%E4%BA%9B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Bonjour Hacker">
+<meta property="og:description" content="NTFS vs FAT32FAT32    4GB  由于FAT32的32位表项只能存储4字节的簇号，每个簇的大小是由文件系统决定的。例如，在FAT32文件系统中，如果每个簇的大小为4KB，则最大的文件大小为4GB（即4KB * 1,048,576个簇）。如果需要存储更大的文件，则需要将文件系统格式化为更高级的文件系统，如NTFS  NTFS    权限控制、日志文件 访问控制列表ACL vs 访">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/03/30/2xrBv6ytoq1slfR.png">
+<meta property="article:published_time" content="2023-03-27T02:57:23.000Z">
+<meta property="article:modified_time" content="2023-03-29T12:57:23.000Z">
+<meta property="article:author" content="zi0wi15on">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/30/2xrBv6ytoq1slfR.png"><link rel="shortcut icon" href="/personal/favicon32.ico"><link rel="canonical" href="https://zi0wi15on.top/2023/03/27/20230327-%E4%B8%80%E4%BA%9B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":30,"languages":{"author":"作者: zi0wi15on","link":"链接: ","source":"来源: Bonjour Hacker","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#868686","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一些零散的知识点',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-29 20:57:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/></pre></li><link rel="preconnect" href="https://T36950RIKQ-dsn.algolia.net" crossorigin /><link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Bonjour Hacker" type="application/atom+xml">
+</head><body><link rel="stylesheet" href="/personal/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/personal/profile.jpg" onerror="onerror=null;src='/personal/404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-screwdriver-wrench"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fingerprint"></i><span> 自制</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/terminal/"><i class="fa-fw fas fa-person-digging"></i><span> 开发中</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/03/30/2xrBv6ytoq1slfR.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Bonjour Hacker"><img class="site-icon" src="/personal/hacker.png"/></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-screwdriver-wrench"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fingerprint"></i><span> 自制</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/terminal/"><i class="fa-fw fas fa-person-digging"></i><span> 开发中</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">一些零散的知识点</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-27T02:57:23.000Z" title="发表于 2023-03-27 10:57:23">2023-03-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-29T12:57:23.000Z" title="更新于 2023-03-29 20:57:23">2023-03-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">670</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="一些零散的知识点"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="NTFS-vs-FAT32"><a href="#NTFS-vs-FAT32" class="headerlink" title="NTFS vs FAT32"></a>NTFS vs FAT32</h1><p>FAT32    4GB</p>
+<blockquote>
+<p>由于FAT32的32位表项只能存储4字节的簇号，每个簇的大小是由文件系统决定的。例如，在FAT32文件系统中，如果每个簇的大小为4KB，则最大的文件大小为4GB（即4KB * 1,048,576个簇）。如果需要存储更大的文件，则需要将文件系统格式化为更高级的文件系统，如NTFS</p>
+</blockquote>
+<p>NTFS    权限控制、日志文件</p>
+<h1 id="访问控制列表ACL-vs-访问控制能力表ACCL"><a href="#访问控制列表ACL-vs-访问控制能力表ACCL" class="headerlink" title="访问控制列表ACL vs 访问控制能力表ACCL"></a>访问控制列表ACL vs 访问控制能力表ACCL</h1><p>客体？主体？</p>
+<h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p>linux</p>
+<blockquote>
+<ul>
+<li><p>/var/log/messages：这是Linux系统中默认的系统日志文件，记录了系统中发生的大多数事件，包括启动和关闭时间、系统错误、进程启动和停止等。</p>
+</li>
+<li><p>/var/log/auth.log：这是Linux系统中的认证日志文件，记录了用户认证和授权信息，包括登录、密码更改等。</p>
+</li>
+<li><p>/var/log/syslog：这是Linux系统中的系统日志文件之一，记录了内核和其他系统组件的信息，包括硬件故障、服务启动和停止、设备驱动程序等。</p>
+</li>
+<li><p>/var/log/secure：这是Linux系统中的安全日志文件，记录了与安全相关的事件，包括sudo使用、ssh登录、防火墙规则等。</p>
+</li>
+<li><p>/var/log/kern.log：这是Linux系统中内核日志文件，记录了与内核相关的事件，例如内核模块载入、系统调用等。</p>
+</li>
+<li><p>/var/log/httpd/access_log：这是Apache服务器的访问日志文件，记录了对服务器的访问请求和响应信息。</p>
+</li>
+</ul>
+</blockquote>
+<p>二进制日志文件</p>
+<h1 id="权限、鉴别信息"><a href="#权限、鉴别信息" class="headerlink" title="权限、鉴别信息"></a>权限、鉴别信息</h1><p>应以<strong>system</strong>权限运行用户对鉴别信息的操作，而非administrator</p>
+<h1 id="Google-Hacking常用关键词"><a href="#Google-Hacking常用关键词" class="headerlink" title="Google Hacking常用关键词"></a>Google Hacking常用关键词</h1><p><img src="https://s2.loli.net/2023/03/27/m3FbyfOu7PIkTaK.png" alt=""></p>
+<h1 id="PHP单双引号区别"><a href="#PHP单双引号区别" class="headerlink" title="PHP单双引号区别"></a>PHP单双引号区别</h1><p><img src="https://s2.loli.net/2023/03/27/vpYz7GqFlSTjMO3.png" alt=""></p>
+<h1 id="MySQL的一些常用命令"><a href="#MySQL的一些常用命令" class="headerlink" title="MySQL的一些常用命令"></a>MySQL的一些常用命令</h1><p>database、table</p>
+<p>show、create、insert、drop</p>
+<h2 id="用户权限设置"><a href="#用户权限设置" class="headerlink" title="用户权限设置"></a>用户权限设置</h2><h2 id="元数据查询"><a href="#元数据查询" class="headerlink" title="元数据查询"></a>元数据查询</h2><h2 id="union查询详解"><a href="#union查询详解" class="headerlink" title="union查询详解"></a>union查询详解</h2><h2 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h2><h2 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h2><p>length()    存储长度</p>
+<p>char_length()    字符长度</p>
+<h2 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h2><p>mmysqldump</p>
+<p>导出&gt;</p>
+<p>导入&lt;</p>
+<h1 id="Scuba漏扫工具的进阶操作"><a href="#Scuba漏扫工具的进阶操作" class="headerlink" title="Scuba漏扫工具的进阶操作?"></a>Scuba漏扫工具的进阶操作?</h1><hr>
+<h1 id="HTTP-referer"><a href="#HTTP-referer" class="headerlink" title="HTTP referer"></a>HTTP referer</h1><p>表示发出请求的原始URL，比如通过某些网站点击广告跳转时，广告站长会根据referer判断客户是从哪个网站来的（溯源）</p>
+<h1 id="HTTPonly-防范XSS攻击"><a href="#HTTPonly-防范XSS攻击" class="headerlink" title="HTTPonly 防范XSS攻击"></a>HTTPonly 防范XSS攻击</h1><h1 id="X-Forrwarded-For"><a href="#X-Forrwarded-For" class="headerlink" title="X-Forrwarded-For"></a>X-Forrwarded-For</h1><p>用来识别通过HTTP代理或负载均衡方式连接到Web服务器的客户端最原始的IP地址的HTTP请求头字段，可用工具伪造，<mark>基本不可信:(</mark></p>
+<h1 id="Burpsuite抓包tip"><a href="#Burpsuite抓包tip" class="headerlink" title="Burpsuite抓包tip"></a>Burpsuite抓包tip</h1><p>HTTP可直接拦截</p>
+<p>HTTPS需要给安装证书</p>
+<ul>
+<li><p>BP上证书再生成</p>
+</li>
+<li><p>浏览器url上搜<code>burp</code>，点击右上角生成证书</p>
+</li>
+<li><p>浏览器设置上安装证书</p>
+</li>
+</ul>
+<h1 id="Goby资产检查，Xray扫描"><a href="#Goby资产检查，Xray扫描" class="headerlink" title="Goby资产检查，Xray扫描"></a>Goby资产检查，Xray扫描</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zi0wi15on.top">zi0wi15on</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zi0wi15on.top/2023/03/27/20230327-%E4%B8%80%E4%BA%9B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/">https://zi0wi15on.top/2023/03/27/20230327-%E4%B8%80%E4%BA%9B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zi0wi15on.top" target="_blank">Bonjour Hacker</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/03/30/2xrBv6ytoq1slfR.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/17/20230317-%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E7%83%AF%E7%89%9B%E6%95%B0%E6%8D%AE%E7%9A%84%E7%88%AC%E8%99%AB%E7%BB%83%E4%B9%A0/" title="记一次对烯牛数据WebPage的爬虫练习"><img class="cover" src="https://s2.loli.net/2023/03/17/hRBFTH6Xwym3WKA.png" onerror="onerror=null;src='/personal/404.png'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">记一次对烯牛数据WebPage的爬虫练习</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/30/20230330-SQL%E5%8D%95%E5%BC%95%E5%8F%B7%E6%B3%A8%E5%85%A5%E4%B8%8D%E6%8A%A5%E9%94%99/" title="SQL单引号注入不报错"><img class="cover" src="https://s2.loli.net/2023/03/30/1FfjOtQNwl4XGZy.png" onerror="onerror=null;src='/personal/404.png'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SQL单引号注入不报错</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NTFS-vs-FAT32"><span class="toc-number">1.</span> <span class="toc-text">NTFS vs FAT32</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8ACL-vs-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E8%83%BD%E5%8A%9B%E8%A1%A8ACCL"><span class="toc-number">2.</span> <span class="toc-text">访问控制列表ACL vs 访问控制能力表ACCL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E5%BF%97"><span class="toc-number">3.</span> <span class="toc-text">日志</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E3%80%81%E9%89%B4%E5%88%AB%E4%BF%A1%E6%81%AF"><span class="toc-number">4.</span> <span class="toc-text">权限、鉴别信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Google-Hacking%E5%B8%B8%E7%94%A8%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-number">5.</span> <span class="toc-text">Google Hacking常用关键词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP%E5%8D%95%E5%8F%8C%E5%BC%95%E5%8F%B7%E5%8C%BA%E5%88%AB"><span class="toc-number">6.</span> <span class="toc-text">PHP单双引号区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">7.</span> <span class="toc-text">MySQL的一些常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE"><span class="toc-number">7.1.</span> <span class="toc-text">用户权限设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.2.</span> <span class="toc-text">元数据查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#union%E6%9F%A5%E8%AF%A2%E8%AF%A6%E8%A7%A3"><span class="toc-number">7.3.</span> <span class="toc-text">union查询详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.4.</span> <span class="toc-text">分组查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">7.5.</span> <span class="toc-text">字符串函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA"><span class="toc-number">7.6.</span> <span class="toc-text">导入导出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scuba%E6%BC%8F%E6%89%AB%E5%B7%A5%E5%85%B7%E7%9A%84%E8%BF%9B%E9%98%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">8.</span> <span class="toc-text">Scuba漏扫工具的进阶操作?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-referer"><span class="toc-number">9.</span> <span class="toc-text">HTTP referer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPonly-%E9%98%B2%E8%8C%83XSS%E6%94%BB%E5%87%BB"><span class="toc-number">10.</span> <span class="toc-text">HTTPonly 防范XSS攻击</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#X-Forrwarded-For"><span class="toc-number">11.</span> <span class="toc-text">X-Forrwarded-For</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Burpsuite%E6%8A%93%E5%8C%85tip"><span class="toc-number">12.</span> <span class="toc-text">Burpsuite抓包tip</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Goby%E8%B5%84%E4%BA%A7%E6%A3%80%E6%9F%A5%EF%BC%8CXray%E6%89%AB%E6%8F%8F"><span class="toc-number">13.</span> <span class="toc-text">Goby资产检查，Xray扫描</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/03/30/2xrBv6ytoq1slfR.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 By zi0wi15on</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.zi0wi15on.top/">back to HOME</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="8485130843" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-autoplay="true" data-preload="none" data-order="random" data-listfolded="true" data-lrctype="-1"> </div><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script> - <script type="text/x-mathjax-config">MathJax.Hub.Config({menuSettings:{zoom:"None"},showMathMenu:false,jax:["input/TeX","output/CommonHTML"],extensions:["tex2jax.js"],TeX:{extensions:["AMSmath.js","AMSsymbols.js"],equationNumbers:{autoNumber:"AMS"}},tex2jax:{inlineMath:[["\\(", "\\)"]],displayMath:[["\\[", "\\]"]]}});</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="EXP,payload,shellcode,社会工程学,蓝队,CTF,AWD,Misc,Crypto,Reverse,Pwn,Mobile,Flag,注入攻击,BruteForce,rockyou,脱壳,撞库,免杀,反序列化,应急响应,代码审计,数字取证,可信计算只因,whois,POC测试,XSS,SSRF,钓鲸,DDoS,WebShell,访问控制,CMS,溯源反制,IPS,CA,IoT,Hook,kernel,RSA,AES,Hash,CISP,0day,Petya,log4j,RCE,逻辑漏洞,OWASP Top10,SSRF,XSS,永恒之蓝,熊猫烧香,BurpSuite,Hashcat,Nessus,Nmap,MSF,OllyDbg,IDA,PEiD,BlackArch,Kali,Mr.Robot,凯文·米特尼克,zi0wi15on" data-fontsize="20px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="docsearch-wrap"><div id="docsearch" style="display:none"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css/dist/style.min.css"/><script src="https://cdn.jsdelivr.net/npm/@docsearch/js/dist/umd/index.min.js"></script><script>(() => {
+  docsearch(Object.assign({
+    appId: 'T36950RIKQ',
+    apiKey: '31638accf024d9218397ec9e3d5fb686',
+    indexName: 'zi0wi15on',
+    container: '#docsearch',
+  }, null))
+
+
+  const searchClickFn = () => {
+    document.querySelector('#search-button > .search').addEventListener('click', () => {
+      document.querySelector('.DocSearch-Button').click()
+    })
+  }
+
+  searchClickFn()
+  window.addEventListener('pjax:complete', searchClickFn)
+})()</script></div></body></html>

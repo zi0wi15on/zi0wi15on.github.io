@@ -1,0 +1,1235 @@
+<link rel="stylesheet" href="/js/APlayer.min.css"/><div id="aplayer"></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.js"></script><script type="text/javascript" src="/js/music.js"></script><!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>《数据安全》NoteDown Weekly | Bonjour Hacker</title><meta name="author" content="zi0wi15on"><meta name="copyright" content="zi0wi15on"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常见存储组件 硬件架构  软件组件  存储解决方案   常见存储介质 硬盘，磁盘阵列（控制软件：BIOS or 卷管理器），虚拟磁带库（VTL）  磁带，磁带机，磁带库  光盘   存储网络分类直接连接存储（DAS）常见接口SCSI、USB 特点 没有独立操作系统、共享困难（无论面向平台还是用户端）  无连接、管理困难  支持数据块级访问   网络连接存储（NAS）常见云服务器 特点 文件管理系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《数据安全》NoteDown Weekly">
+<meta property="og:url" content="https://zi0wi15on.top/2023/02/28/20230228-%E3%80%8A%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E3%80%8B-NoteDown-Weekly/index.html">
+<meta property="og:site_name" content="Bonjour Hacker">
+<meta property="og:description" content="常见存储组件 硬件架构  软件组件  存储解决方案   常见存储介质 硬盘，磁盘阵列（控制软件：BIOS or 卷管理器），虚拟磁带库（VTL）  磁带，磁带机，磁带库  光盘   存储网络分类直接连接存储（DAS）常见接口SCSI、USB 特点 没有独立操作系统、共享困难（无论面向平台还是用户端）  无连接、管理困难  支持数据块级访问   网络连接存储（NAS）常见云服务器 特点 文件管理系统">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/02/28/vcXfduEBKyoMAxH.png">
+<meta property="article:published_time" content="2023-02-28T06:11:00.000Z">
+<meta property="article:modified_time" content="2023-04-11T08:31:00.000Z">
+<meta property="article:author" content="zi0wi15on">
+<meta property="article:tag" content="数据存储介质">
+<meta property="article:tag" content="灾备技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/02/28/vcXfduEBKyoMAxH.png"><link rel="shortcut icon" href="/personal/favicon32.ico"><link rel="canonical" href="https://zi0wi15on.top/2023/02/28/20230228-%E3%80%8A%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E3%80%8B-NoteDown-Weekly/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":30,"languages":{"author":"作者: zi0wi15on","link":"链接: ","source":"来源: Bonjour Hacker","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#868686","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '《数据安全》NoteDown Weekly',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-11 16:31:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/></pre></li><link rel="preconnect" href="https://T36950RIKQ-dsn.algolia.net" crossorigin /><link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Bonjour Hacker" type="application/atom+xml">
+</head><body><link rel="stylesheet" href="/personal/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/personal/profile.jpg" onerror="onerror=null;src='/personal/404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-screwdriver-wrench"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fingerprint"></i><span> 自制</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/terminal/"><i class="fa-fw fas fa-person-digging"></i><span> 开发中</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/02/28/vcXfduEBKyoMAxH.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Bonjour Hacker"><img class="site-icon" src="/personal/hacker.png"/></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-screwdriver-wrench"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fingerprint"></i><span> 自制</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/terminal/"><i class="fa-fw fas fa-person-digging"></i><span> 开发中</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《数据安全》NoteDown Weekly</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-28T06:11:00.000Z" title="发表于 2023-02-28 14:11:00">2023-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-11T08:31:00.000Z" title="更新于 2023-04-11 16:31:00">2023-04-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">9.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>28分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《数据安全》NoteDown Weekly"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="常见存储组件"><a href="#常见存储组件" class="headerlink" title="常见存储组件"></a>常见存储组件</h1><ul>
+<li><p>硬件架构</p>
+</li>
+<li><p>软件组件</p>
+</li>
+<li><p>存储解决方案</p>
+</li>
+</ul>
+<h1 id="常见存储介质"><a href="#常见存储介质" class="headerlink" title="常见存储介质"></a>常见存储介质</h1><ul>
+<li><p>硬盘，磁盘阵列（控制软件：BIOS or 卷管理器），虚拟磁带库（VTL）</p>
+</li>
+<li><p>磁带，磁带机，磁带库</p>
+</li>
+<li><p>光盘</p>
+</li>
+</ul>
+<h1 id="存储网络分类"><a href="#存储网络分类" class="headerlink" title="存储网络分类"></a>存储网络分类</h1><h2 id="直接连接存储（DAS）"><a href="#直接连接存储（DAS）" class="headerlink" title="直接连接存储（DAS）"></a>直接连接存储（DAS）</h2><h3 id="常见接口"><a href="#常见接口" class="headerlink" title="常见接口"></a>常见接口</h3><p>SCSI、USB</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><p>没有独立操作系统、共享困难（无论面向平台还是用户端）</p>
+</li>
+<li><p>无连接、管理困难</p>
+</li>
+<li><p>支持数据块级访问</p>
+</li>
+</ul>
+<h2 id="网络连接存储（NAS）"><a href="#网络连接存储（NAS）" class="headerlink" title="网络连接存储（NAS）"></a>网络连接存储（NAS）</h2><h3 id="常见"><a href="#常见" class="headerlink" title="常见"></a>常见</h3><p>云服务器</p>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><p>文件管理系统</p>
+</li>
+<li><p>后端存储主要由磁盘阵列构成，提供数据存储功能，装有操作系统，可跨平台</p>
+</li>
+<li><p>本地无服务器备份功能</p>
+</li>
+<li><p>可达几万亿字节（TB）的存储空间</p>
+</li>
+<li><p>数据块级访问较困难</p>
+</li>
+<li><p>存在网络节点故障的可能</p>
+</li>
+</ul>
+<h2 id="存储区域网络（SAN）"><a href="#存储区域网络（SAN）" class="headerlink" title="存储区域网络（SAN）"></a>存储区域网络（SAN）</h2><ul>
+<li><p>FC SAN</p>
+</li>
+<li><p>IP SAN</p>
+</li>
+</ul>
+<h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><p>服务器与存储设备分开，再利用光纤通道或者IP网络连接在一起，综合了DAS、NAS的一些优点</p>
+</li>
+<li><p>集中存储，减少单点故障</p>
+</li>
+<li><p>价格较昂贵，较适合大型企业搭建内部存储结构</p>
+</li>
+</ul>
+<h2 id="数据分级管理"><a href="#数据分级管理" class="headerlink" title="数据分级管理"></a>数据分级管理</h2><p>2:8原则</p>
+<h2 id="数据存储技术"><a href="#数据存储技术" class="headerlink" title="数据存储技术"></a>数据存储技术</h2><ul>
+<li><p>备份</p>
+</li>
+<li><p>归档</p>
+</li>
+<li><p>迁移</p>
+<p>迁移相比较归档，会在原存储设备上保留<mark>占位符</mark>，虽然都能释放原存储设备空间，但是迁移会在有需要时从二级存储设备上回迁</p>
+</li>
+</ul>
+<h2 id="独立磁盘冗余阵列（RAID）"><a href="#独立磁盘冗余阵列（RAID）" class="headerlink" title="独立磁盘冗余阵列（RAID）"></a>独立磁盘冗余阵列（RAID）</h2><p>存在级别：0~6等</p>
+<h2 id="存储性能指标"><a href="#存储性能指标" class="headerlink" title="存储性能指标"></a>存储性能指标</h2><ul>
+<li><p>最大带宽</p>
+</li>
+<li><p>IOPS</p>
+</li>
+<li><p>SPC测试报告</p>
+<p>SPC-1针对随机IO，SPC-2针对顺序IO，后者更具权威性</p>
+</li>
+</ul>
+<h1 id="容灾与备份"><a href="#容灾与备份" class="headerlink" title="容灾与备份"></a>容灾与备份</h1><p>备份是容灾的基础</p>
+<p>数据备份的核心是恢复</p>
+<ul>
+<li><p>冷备份</p>
+</li>
+<li><p>热备份</p>
+</li>
+</ul>
+<h2 id="数据备份原则"><a href="#数据备份原则" class="headerlink" title="数据备份原则"></a>数据备份原则</h2><ul>
+<li><p>稳定性</p>
+</li>
+<li><p>全面性</p>
+</li>
+<li><p>自动化</p>
+</li>
+<li><p>高性能</p>
+</li>
+<li><p>操作简单</p>
+</li>
+</ul>
+<h2 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h2><ul>
+<li><p>RPO 恢复点目标</p>
+<p>当灾难发生时的数据丢失量</p>
+</li>
+<li><p>RTO 恢复时间目标</p>
+<p>恢复系统所需时间</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/02/28/QDo2MWL6TBmRegl.png" alt=""></p>
+<h2 id="容灾级别"><a href="#容灾级别" class="headerlink" title="容灾级别"></a>容灾级别</h2><ol>
+<li><p>本地保存</p>
+</li>
+<li><p>异地保存</p>
+</li>
+<li><p>热备份</p>
+</li>
+<li><p>网络传输</p>
+<p>2、3通常使用交通工具归档或迁移，恢复时间单位一般为天数，4使用网络，备份与恢复速度更快，恢复时间单位一般为小时</p>
+</li>
+<li><p>定时传输备份</p>
+</li>
+<li><p>实时传输备份</p>
+<p>使用镜像</p>
+</li>
+<li><p>应用级容灾</p>
+<p>可实现无数据丢失，利用双重在线存储和完全的网络切换能力</p>
+</li>
+</ol>
+<h1 id="数据中心"><a href="#数据中心" class="headerlink" title="数据中心"></a>数据中心</h1><h2 id="关键设备"><a href="#关键设备" class="headerlink" title="关键设备"></a>关键设备</h2><ul>
+<li><p>计算机</p>
+</li>
+<li><p>服务器</p>
+</li>
+<li><p>存储</p>
+</li>
+<li><p>网络</p>
+</li>
+</ul>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li><p>集中存储</p>
+</li>
+<li><p>海量空间</p>
+</li>
+<li><p>快速I/O</p>
+</li>
+</ul>
+<hr>
+<h1 id="传统内置存储遇到的问题？（易考）"><a href="#传统内置存储遇到的问题？（易考）" class="headerlink" title="传统内置存储遇到的问题？（易考）"></a>传统内置存储遇到的问题？（易考）</h1><h2 id="硬盘限制"><a href="#硬盘限制" class="headerlink" title="硬盘限制"></a>硬盘限制</h2><p>硬盘数量有限</p>
+<h2 id="机箱限制"><a href="#机箱限制" class="headerlink" title="机箱限制"></a>机箱限制</h2><p>散热、供电、有限空间</p>
+<h2 id="C-S架构"><a href="#C-S架构" class="headerlink" title="C/S架构"></a>C/S架构</h2><p>对存储设备的任何读写操作必须对服务器进行访问，给服务器带来较大负担</p>
+<p><strong>共享存储困难</strong></p>
+<h1 id="网络存储系统层次"><a href="#网络存储系统层次" class="headerlink" title="网络存储系统层次"></a>网络存储系统层次</h1><ul>
+<li><p>主机层 =&gt; I/O操作</p>
+<blockquote>
+<p><strong>SAN</strong></p>
+<ul>
+<li><p>IP SAN</p>
+</li>
+<li><p>FC SAN（较多）</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>存储层</p>
+</li>
+<li><p>网络层 =&gt; 连接以上两层</p>
+</li>
+</ul>
+<h1 id="存储介质"><a href="#存储介质" class="headerlink" title="存储介质"></a>存储介质</h1><h2 id="机械磁盘"><a href="#机械磁盘" class="headerlink" title="机械磁盘"></a>机械磁盘</h2><h3 id="结构说明"><a href="#结构说明" class="headerlink" title="结构说明"></a>结构说明</h3><p>磁头 =&gt; 径向移动进行读写：沿着直径移动</p>
+<p>启停区（着陆区）：主轴表面</p>
+<p>0磁道：最外圈，磁道从外到内由0开始编号，数量300~1024，or more</p>
+<h3 id="部分参数注释"><a href="#部分参数注释" class="headerlink" title="部分参数注释"></a>部分参数注释</h3><p>转速：每分钟转过圈数，单位为<strong>RPM</strong></p>
+<h3 id="平均访问时间-构成"><a href="#平均访问时间-构成" class="headerlink" title="平均访问时间 构成"></a>平均访问时间 构成</h3><ul>
+<li><p>平均寻道时间，对标磁头径向移动速度</p>
+</li>
+<li><p>硬盘等待时间，产生原因是磁头到达指定磁道，但目标数据扇区还未转到磁头区</p>
+<blockquote>
+<p>平均等待时间，一般为转速倒数的一半，即转半圈需要的时间</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="数据传输率"><a href="#数据传输率" class="headerlink" title="数据传输率"></a>数据传输率</h3><ul>
+<li><p>内部，对标内部缓存</p>
+</li>
+<li><p>外部，对标硬盘与系统总线</p>
+</li>
+</ul>
+<h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><h4 id="IOPS（计算题易考）"><a href="#IOPS（计算题易考）" class="headerlink" title="IOPS（计算题易考）"></a>IOPS（<mark>计算题易考</mark>）</h4><p>每秒完成的读写次数</p>
+<blockquote>
+<p><strong>相关计算方法</strong>   一个I/O请求所需时间如下总和：</p>
+<ul>
+<li><p>寻道时间</p>
+</li>
+<li><p>旋转延迟（与上面的平均访问时间的<strong>平均等待时间</strong>等同）</p>
+</li>
+<li><p>数据传输时间（相对较快，一般忽略不计）</p>
+</li>
+</ul>
+</blockquote>
+<p>例子：给出寻道时间3ms、转速7200rpm，求IOPS</p>
+<p>答：</p>
+<p><img src="https://s2.loli.net/2023/04/14/KSt9qBxfyJGajbP.png" alt=""></p>
+<h3 id="硬盘常用接口"><a href="#硬盘常用接口" class="headerlink" title="硬盘常用接口"></a>硬盘常用接口</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ATA</td>
+<td>便宜，兼容性好；但速度慢，对接口电缆长度严格限制</td>
+</tr>
+<tr>
+<td>SCSI</td>
+<td>贵；高性能，支持热插拔</td>
+</tr>
+<tr>
+<td>SATA</td>
+<td>点对点连接，比ATA快</td>
+</tr>
+<tr>
+<td>SAS</td>
+<td>串行SCSI，向下兼容，全双工，双端口</td>
+</tr>
+<tr>
+<td>FC</td>
+<td>光纤，高带宽，长电缆支持，通用性很强</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="SSD固态硬盘"><a href="#SSD固态硬盘" class="headerlink" title="SSD固态硬盘"></a>SSD固态硬盘</h2><p>固态电子存储<strong>芯片阵列</strong>制成</p>
+<ul>
+<li><p>控制单元</p>
+<ul>
+<li>控制器</li>
+</ul>
+</li>
+<li><p>存储单元</p>
+<ul>
+<li><p>FLASH芯片，闪存，可移动，不受电源控制</p>
+</li>
+<li><p>DRAM芯片，寿命长，但需独立电源保护数据</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="基本存储单元分类"><a href="#基本存储单元分类" class="headerlink" title="基本存储单元分类"></a>基本存储单元分类</h3><ul>
+<li><p>SLC 单层单元</p>
+</li>
+<li><p>MLC 多层单元，一般为2bit单元</p>
+</li>
+<li><p>TLC 三层单元，3bit</p>
+<p>更复杂，可靠性更低</p>
+</li>
+<li><p>前缀加个‘e’，检测标准更严格，更高端</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>SLC电压阈值</th>
+<th>值表示</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;=4V</td>
+<td>0</td>
+<td>已写入</td>
+</tr>
+<tr>
+<td>&lt;4V</td>
+<td>1</td>
+<td>已擦除</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>MLC电压阈值</th>
+<th>值表示</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;=5.5V</td>
+<td>00</td>
+<td>完全写入</td>
+</tr>
+<tr>
+<td>4~5.5V</td>
+<td>01</td>
+<td>部分写入</td>
+</tr>
+<tr>
+<td>3.5~4V</td>
+<td>10</td>
+<td>部分擦除</td>
+</tr>
+<tr>
+<td>&lt;3.5V</td>
+<td>11</td>
+<td>完全擦除</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="单-多Plane-NAND"><a href="#单-多Plane-NAND" class="headerlink" title="单/多Plane NAND"></a>单/多Plane NAND</h3><p>跟并行、交叉处理有关，以提升性能的设计</p>
+<h3 id="判断题-有关缓存"><a href="#判断题-有关缓存" class="headerlink" title="判断题-有关缓存"></a>判断题-有关缓存</h3><p>SSD一定要有缓存吗？或者没有缓存，性能就一定不好吗？答案是否定的</p>
+<p>例SandForce公司生产的控制器不含缓存但性能依旧出色（因为结构简单，体积更小）</p>
+<h3 id="磨损平衡"><a href="#磨损平衡" class="headerlink" title="磨损平衡"></a>磨损平衡</h3><ul>
+<li><p>动态磨损算法</p>
+</li>
+<li><p>静态磨损算法（更复杂，面向80%的那些不常用数据区域）</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>磨损平衡算法的实现一般涉及以下几个方面：</strong></p>
+<ol>
+<li><p>块擦除计数器（Block Erase Counters）：SSD中每个块的使用寿命是有限的，一般用块擦除计数器（BEC）来记录每个块已经擦除的次数，以便进行磨损平衡。</p>
+</li>
+<li><p>页映射表（Page Mapping Table）：页映射表是SSD中的一个重要数据结构，用于将逻辑页地址映射到物理页地址。磨损平衡算法需要通过页映射表来实现块的平衡。</p>
+</li>
+<li><p>块选择策略：块选择策略是磨损平衡算法的核心，根据不同的块选择策略，可以实现不同的磨损平衡效果。以下是一些常见的块选择策略：</p>
+</li>
+</ol>
+<p>a. 最少擦除计数器（Least Erase Count）：选择擦除计数器最小的块进行写操作。</p>
+<p>b. 随机选择（Random Selection）：随机选择一个块进行写操作。</p>
+<p>c. 空闲块优先（Free Block First）：优先选择没有被使用过的块进行写操作。</p>
+<p>d. 最近最少使用（Least Recently Used）：选择最近最少使用的块进行写操作。</p>
+<p><strong>流程：</strong></p>
+<ol>
+<li><p>在SSD初始化时，创建页映射表和块擦除计数器，并初始化为全0。</p>
+</li>
+<li><p>当需要写入一个逻辑页时，先将逻辑页地址转换为物理页地址，然后更新对应块的擦除计数器，并将数据写入页映射表中。</p>
+</li>
+<li><p>当一个块的擦除计数器达到上限时，进行磨损平衡操作，选择一个目标块进行擦除操作。具体选择方法可以根据需求选择不同的块选择策略，例如选择擦除计数器最小的块、空闲块优先、最近最少使用等等。</p>
+</li>
+<li><p>在进行磨损平衡操作时，需要将目标块中的数据迁移到其他块中，这里采用的方法是选择擦除计数器最小的块，将其所有页拷贝到目标块中。</p>
+</li>
+<li><p>迁移完成后，将目标块的擦除计数器清零，然后将所有迁移过来的页的映射信息更新为目标块的地址。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><p>去除重复数据，提取出来写入空白块，以腾出更多可利用的数据块</p>
+<ul>
+<li><p>闲置垃圾回收</p>
+</li>
+<li><p>被动垃圾回收</p>
+</li>
+<li><p>手动垃圾回收</p>
+</li>
+</ul>
+<h3 id="预留空间"><a href="#预留空间" class="headerlink" title="预留空间"></a>预留空间</h3><h4 id="颗粒容量算法差异"><a href="#颗粒容量算法差异" class="headerlink" title="颗粒容量算法差异"></a>颗粒容量算法差异</h4><p>我们理解的1GB=10^9</p>
+<p>计算机的1GB=2^30</p>
+<p>(2^30 - 10^9) / 2^30 ≈ 7.37%</p>
+<p>因此新盘的真正存储空间 = (n <em> 2^30) </em> (1-7.37%)</p>
+<h3 id="写入放大"><a href="#写入放大" class="headerlink" title="写入放大"></a>写入放大</h3><p><img src="https://s2.loli.net/2023/03/14/mJSkKxjEPM36VWT.png" alt=""></p>
+<ul>
+<li><p><mark>闲置垃圾回收</mark>增加了写入发达，但被动垃圾回收不影响</p>
+</li>
+<li><p>预留空间（空白块）可以减少写入放大</p>
+</li>
+<li><p>开启TRIM指令可以减少写入放大</p>
+<blockquote>
+<p>开启TRIM指令可以减少写入放大的原因是TRIM可以帮助SSD更有效地管理空闲块。</p>
+<p>当我们在SSD上写入数据时，SSD会将数据写入到已经擦除的块中。如果SSD上没有足够的空闲块，SSD就需要先执行擦除操作，然后再写入新的数据。这个过程称为写入放大，因为写入的数据量实际上比我们要写入的数据量更大。</p>
+<p>而开启TRIM指令后，操作系统可以通知SSD哪些块已经被删除并且不再需要。SSD会将这些块标记为可擦除状态，使得在写入新数据时可以更有效地利用这些块，从而减少写入放大的程度。</p>
+<p><strong>好处：</strong></p>
+<ol>
+<li><p>提高写入性能：由于SSD不需要在写入数据时先执行擦除操作，因此可以提高写入性能。这是因为擦除操作通常比写入操作慢得多。</p>
+</li>
+<li><p>延长SSD寿命：由于SSD不需要在写入数据时执行擦除操作，因此可以减少擦除次数，延长SSD的使用寿命。</p>
+</li>
+<li><p>减少数据损坏的风险：当SSD没有足够的空闲块时，写入操作可能会覆盖未擦除的块，从而导致数据损坏。开启TRIM指令可以减少这种风险。</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>持续写入一定程度减少，随机写入大大提升写入放大</p>
+</li>
+<li><p>磨损平衡提升写入放大</p>
+</li>
+<li><p>DuraWrite（主要是压缩技术），减少写入放大</p>
+</li>
+</ul>
+<h3 id="其他功能-P46-48"><a href="#其他功能-P46-48" class="headerlink" title="其他功能 P46-48"></a>其他功能 P46-48</h3><ul>
+<li><p>坏块管理</p>
+</li>
+<li><p>ECC差错检测与修正</p>
+</li>
+<li><p>交错操作，以提升NAND的传输率（并行）</p>
+</li>
+<li><p>断电保护，for闪存</p>
+</li>
+<li><p>SMART自我监控，可预测并分析渐进性故障，但无法预防突然性故障（只能多做备份或RAID之类的冗余）</p>
+</li>
+</ul>
+<h2 id="SSD-VS-HDD-P48"><a href="#SSD-VS-HDD-P48" class="headerlink" title="SSD VS HDD P48"></a>SSD VS HDD P48</h2><p>一般的，SSD访问快；HDD寿命更长，且便宜大碗</p>
+<h1 id="卷"><a href="#卷" class="headerlink" title="卷"></a>卷</h1><p>卷组 &gt; 逻辑卷 &gt; 物理卷（可以是一个完整硬盘，或者其中一分区）</p>
+<h1 id="IPMI-智能平台管理接口-P56"><a href="#IPMI-智能平台管理接口-P56" class="headerlink" title="IPMI 智能平台管理接口 P56"></a>IPMI 智能平台管理接口 P56</h1><p>可远程连接至服务器并对服务器进行管理</p>
+<h1 id="数据库的增量导出-P62"><a href="#数据库的增量导出-P62" class="headerlink" title="数据库的增量导出 P62"></a>数据库的增量导出 P62</h1><ul>
+<li><p>完全</p>
+</li>
+<li><p>增量型</p>
+</li>
+<li><p>累积型</p>
+</li>
+</ul>
+<h1 id="冷备份、热备份"><a href="#冷备份、热备份" class="headerlink" title="冷备份、热备份"></a>冷备份、热备份</h1><p>P63-64</p>
+<hr>
+<h1 id="DAS存储形态的一些说明"><a href="#DAS存储形态的一些说明" class="headerlink" title="DAS存储形态的一些说明"></a>DAS存储形态的一些说明</h1><ul>
+<li><p><strong>外部硬盘存储阵列</strong></p>
+<p>逻辑上串联多个物理磁盘，无备份策略，不提供数据安全保障</p>
+</li>
+<li><p>智能硬盘阵列</p>
+<p>添加了控制器，相比较有备份策略</p>
+</li>
+</ul>
+<h1 id="SAN技术"><a href="#SAN技术" class="headerlink" title="SAN技术"></a>SAN技术</h1><h2 id="SAN典型组网（易考）P71"><a href="#SAN典型组网（易考）P71" class="headerlink" title="SAN典型组网（易考）P71"></a>SAN典型组网（易考）P71</h2><ul>
+<li><p>直连</p>
+<p>主机与存储之间通过<strong>FC HBA</strong>卡连接</p>
+<p>简单经济，但主机资源分享困难</p>
+</li>
+<li><p>单交换</p>
+<p>主机与存储之间通过<strong>FC交换机</strong>连接</p>
+<p>解决了资源分享困难问题，但可能存在单点故障</p>
+</li>
+<li><p>双交换</p>
+<p>设置多个FC交换机，一定程度上解决单点故障问题</p>
+</li>
+</ul>
+<h2 id="SAN组件"><a href="#SAN组件" class="headerlink" title="SAN组件"></a>SAN组件</h2><p>FC HBA卡，连接交换机与主机之间的光纤等</p>
+<h2 id="SAN特点"><a href="#SAN特点" class="headerlink" title="SAN特点"></a>SAN特点</h2><ul>
+<li><p>光纤介质，高速处理</p>
+</li>
+<li><p>存储设备集中部署，可实现设备的集中管理和远程管理</p>
+</li>
+<li><p>存储资源统一部署，便于动态共享</p>
+</li>
+<li><p>数据传输等在SAN网内高速进行，不占用业务网络WAN/LAN的带宽资源</p>
+</li>
+<li><p>扩容方便</p>
+</li>
+<li><p>FC协议对SCSI协议封装，对旧SCSI存储设备兼容性强</p>
+</li>
+</ul>
+<h1 id="FC协议"><a href="#FC协议" class="headerlink" title="FC协议"></a>FC协议</h1><blockquote>
+<p>FC协议（Fibre Channel Protocol）和<strong>以太网协议（Ethernet Protocol）</strong>是两种不同的网络协议，它们在以下几个方面有所区别：</p>
+<ol>
+<li><p>物理层：FC协议使用光纤作为物理层传输介质，而以太网协议通常使用双绞线或光纤。</p>
+</li>
+<li><p>数据传输速率：FC协议支持更高的数据传输速率，最高可达到128Gbps，而以太网协议的最高传输速率为400Gbps。</p>
+</li>
+<li><p>网络拓扑：FC协议通常用于构建SAN（存储区域网络），支持点对点、环形和网状拓扑，而以太网协议通常用于构建LAN（局域网），支持总线型、星型和混合型拓扑。</p>
+</li>
+<li><p>帧结构：FC协议的帧结构较为复杂，包含多个帧头和帧尾，而以太网协议的帧结构相对简单，只有一个帧头和一个帧尾。</p>
+</li>
+<li><p>协议功能：FC协议主要用于连接存储设备和服务器之间的数据传输，提供高速、可靠的数据传输服务；而以太网协议则广泛应用于计算机网络中，提供基于TCP/IP协议的通信服务。</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="FC拓扑结构"><a href="#FC拓扑结构" class="headerlink" title="FC拓扑结构"></a>FC拓扑结构</h2><ul>
+<li><p>点对点</p>
+</li>
+<li><p>仲裁环</p>
+</li>
+<li><p>光纤交换</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/03/21/areOJ4LycngPjS1.png" alt=""></p>
+<h2 id="FC协议栈"><a href="#FC协议栈" class="headerlink" title="FC协议栈"></a>FC协议栈</h2><p>FC0~4</p>
+<p>说明：</p>
+<ul>
+<li><p>FC0~2    物理层</p>
+</li>
+<li><p>FC3~4    高级服务层</p>
+</li>
+</ul>
+<p>其中FC2主要负责传输，最主要</p>
+<h2 id="SCSI是FC协议的子集"><a href="#SCSI是FC协议的子集" class="headerlink" title="SCSI是FC协议的子集"></a>SCSI是FC协议的子集</h2><p>SCSI是位于光纤通道协议栈FC4的上层协议</p>
+<h2 id="FC交换端口-P76"><a href="#FC交换端口-P76" class="headerlink" title="FC交换端口 P76"></a>FC交换端口 P76</h2><p><img src="https://s2.loli.net/2023/03/21/UMYXO7xgNK1beus.png" alt=""></p>
+<h2 id="FC-HBA卡的WWN"><a href="#FC-HBA卡的WWN" class="headerlink" title="FC HBA卡的WWN"></a>FC HBA卡的WWN</h2><ul>
+<li><p>WWNN 全球唯一结点名，一个HBA所有端口共享一个WWNN</p>
+</li>
+<li><p>WWPN 每个端口拥有不同的WWPN</p>
+</li>
+</ul>
+<h1 id="SCSI协议"><a href="#SCSI协议" class="headerlink" title="SCSI协议"></a>SCSI协议</h1><p>SCSI 小型计算机系统专用接口（特殊总线结构），有SCSI控制器，相当于一个小型CPU </p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p><img src="https://s2.loli.net/2023/03/21/OWHV7MjRhZAiyko.png" alt=""></p>
+<h2 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h2><p>三元组（总线号，SCSO设备ID，逻辑单元号LUN）</p>
+<p><img src="https://s2.loli.net/2023/03/21/Ypbis2tWXu5TwIB.png" alt=""></p>
+<h2 id="命令描述块CDB-P83参考"><a href="#命令描述块CDB-P83参考" class="headerlink" title="命令描述块CDB P83参考"></a>命令描述块CDB P83参考</h2><h3 id="操作码"><a href="#操作码" class="headerlink" title="操作码"></a>操作码</h3><p>操作码是所有命令描述块都有的，它总是被放在命令描述块的开头一个字节。5-7 位是组代码,指示该命令具体属于哪个命令组,它决定CDB的长度；0~4位则是具体的命令代码。8 比特在理论上共有256个可能的操作码。</p>
+<h3 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h3><p>……</p>
+<h3 id="控制码"><a href="#控制码" class="headerlink" title="控制码"></a>控制码</h3><ul>
+<li><p>NACA比特</p>
+</li>
+<li><p><strong>链接比特</strong>可以被用作跨越多个指令延续任务。比特为1 时表示发起方请求跨越多个SCSI 指令延续任务</p>
+</li>
+</ul>
+<h2 id="读-写操作过程-P84"><a href="#读-写操作过程-P84" class="headerlink" title="读/写操作过程 P84"></a>读/写操作过程 P84</h2><h2 id="SCSI接口类型-P85"><a href="#SCSI接口类型-P85" class="headerlink" title="SCSI接口类型 P85"></a>SCSI接口类型 P85</h2><p><img src="https://s2.loli.net/2023/03/21/ZK6s9F5W3zIndBS.png" alt=""></p>
+<h2 id="iSCSI协议"><a href="#iSCSI协议" class="headerlink" title="iSCSI协议"></a>iSCSI协议</h2><p>iSCSI    SCSI接口与<strong>TCP/IP协议</strong>的结合，是全新建立在TCP/IP和SCSI指令集的基础上的标准协议</p>
+<blockquote>
+<p>通过SCSI控制卡的使用可以连接多个设备，形成自己的“网络”，但是这个“网络”仅局限于与所附加的主机进行通信,并不能在以太网上共享。如果能够通过SCSI协议组成网络，并且能够直接挂载到以太网上作为网络节点和其他设备进行互联共享，那么SCSI就可以得到更广泛的应用。所以，经过对SCSI的改进，就推出了iSCSI这个协议。</p>
+<p>基于iSCSI协议的IP-SAN是把用户的请求转换成SCSI代码,并将数据封装进IP包内并在以太网中传输。</p>
+</blockquote>
+<p><img src="http://www.sansky.net/files/2007/12/119661379076-clip-image002.jpg" alt=""></p>
+<p>参考：<a target="_blank" rel="noopener" href="http://www.sansky.net/article/2007-12-03-iscsi-storage.html">iSCSI存储技术全攻略 | 【存储部落】</a></p>
+<blockquote>
+<p>iSCSI是一种存储协议，通过网络连接将存储设备连接到服务器。攻击者可以利用iSCSI协议中的漏洞来攻击网络和服务器。以下是一些可能的iSCSI网络攻击思路：</p>
+<ol>
+<li><p>暴力破解：攻击者可以使用暴力破解方法来获取iSCSI目标的凭据。这可能包括破解用户的密码或钓鱼攻击，诱使用户透露其凭据。</p>
+</li>
+<li><p>会话劫持：攻击者可以通过拦截iSCSI通信来获取目标存储设备的控制权。攻击者可以利用这些控制权来修改或删除存储数据，或者干扰存储操作。</p>
+</li>
+<li><p>恶意数据注入：攻击者可以通过发送恶意数据包来破坏存储设备或服务器。这可能包括修改存储数据、篡改存储卷的元数据，或者覆盖存储设备上的重要文件。</p>
+</li>
+<li><p>拒绝服务攻击：攻击者可以使用拒绝服务攻击来干扰iSCSI服务。这可能包括向iSCSI服务发送大量请求，或者向iSCSI目标发送恶意数据包。</p>
+</li>
+<li><p>中间人攻击：攻击者可以通过拦截iSCSI通信来执行中间人攻击。这可能包括截获数据包并修改其内容，或者在通信中插入恶意数据包。</p>
+</li>
+</ol>
+<p>要防止iSCSI网络攻击，可以考虑以下措施：</p>
+<ol>
+<li><p>使用强密码：确保使用强密码，定期更换密码，并对所有iSCSI目标和客户端强制实施密码策略。</p>
+</li>
+<li><p>启用加密：使用iSCSI协议中提供的加密功能，确保所有iSCSI通信都是加密的。</p>
+</li>
+<li><p>确保最新版本：确保使用最新版本的iSCSI软件和硬件，以最大程度地减少已知漏洞的影响。</p>
+</li>
+<li><p>配置访问控制：使用iSCSI协议中提供的访问控制功能来限制对存储设备的访问，并只允许授权的用户访问。</p>
+</li>
+<li><p>监控iSCSI通信：监视所有iSCSI通信，并警惕任何异常活动。在发现异常活动时，立即采取行动以保护网络和数据。</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="iSCSI的发起端和目标端"><a href="#iSCSI的发起端和目标端" class="headerlink" title="iSCSI的发起端和目标端"></a>iSCSI的发起端和目标端</h2><h3 id="I-O请求的启动设备"><a href="#I-O请求的启动设备" class="headerlink" title="I/O请求的启动设备"></a>I/O请求的启动设备</h3><ul>
+<li><p>软件Initiator驱动程序，SCSI封装与TCP传输交付于主机CPU来做</p>
+</li>
+<li><p>硬件的TOE卡，TCP/IP协议栈功能（SCSI封装）交付于主机CPU来做，TCP传输自己做</p>
+</li>
+<li><p>ISCSI HBA卡，SCSI封装与TCP传输自己做</p>
+</li>
+</ul>
+<p>性能依次递增，取决于是否占用CPU来工作</p>
+<hr>
+<h1 id="FC与TCP协议融合"><a href="#FC与TCP协议融合" class="headerlink" title="FC与TCP协议融合"></a>FC与TCP协议融合</h1><h2 id="IP传输FC"><a href="#IP传输FC" class="headerlink" title="IP传输FC"></a>IP传输FC</h2><h3 id="FCIP-基于IP的光纤通道"><a href="#FCIP-基于IP的光纤通道" class="headerlink" title="FCIP    基于IP的光纤通道"></a>FCIP    基于IP的光纤通道</h3><p>利用目前<strong>IP协议</strong>和设施连接两个<strong>异地的FC SAN</strong>的隧道</p>
+<p>关键在于如何将FC协议封装成TCP/IP协议在以太网上传输</p>
+<h4 id="协议栈"><a href="#协议栈" class="headerlink" title="协议栈"></a>协议栈</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FC</td>
+</tr>
+<tr>
+<td>FCIP</td>
+</tr>
+<tr>
+<td>TCP</td>
+</tr>
+<tr>
+<td>IP</td>
+</tr>
+<tr>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="iFCP-Internet光纤信道协议"><a href="#iFCP-Internet光纤信道协议" class="headerlink" title="iFCP    Internet光纤信道协议"></a>iFCP    Internet光纤信道协议</h3><p>可以处理光纤设备之间的传输了，例如光纤交换机之间、光纤存储设备之间</p>
+<p><strong>iFCP不支持独立的存储区域网络的合并操作，因此无法组成单一的逻辑 SAN</strong></p>
+<p>iFCP 的优势在于在建立连接的同时还能够建立网关分区，可以将出现故障的区域隔离开来，并克服了点到点隧道的限制。并且iFCP提供FC设备端到端的连接，TCP连接的中断只会影响到一个通信对，而不会影响到其他通信，也不会将一个设备的错误带给其他设备。基于iFCP实现了SAN的路由故障隔离、安全及灵活管理，具有比FCIP更高的可靠性。</p>
+<h3 id="FCoE"><a href="#FCoE" class="headerlink" title="FCoE"></a>FCoE</h3><p>不管是光纤设备还是FC协议数据都能支持</p>
+<p>但是需要<strong>增强型无损以太网基础设施</strong>上传输光纤信道信号</p>
+<blockquote>
+<p>增强型无损以太网基础设施</p>
+<ul>
+<li><p>数据包优先级：ELE使用基于优先级的流量控制机制来保证低延迟和低丢包率。它定义了8个数据包优先级，每个优先级都有一个最大带宽，以确保高优先级的数据包可以快速传输。</p>
+</li>
+<li><p>链路级别的重传机制：ELE使用链路级别的重传机制来减少数据包的丢失。当数据包在链路上传输时出现错误时，ELE会使用硬件帧缓存来重新发送数据包，以确保数据包能够到达目的地。</p>
+</li>
+<li><p>硬件帧缓存：ELE使用硬件帧缓存来缓存发送的数据包。这个缓存可以存储数千个数据包，以便在出现拥塞时能够进行流量控制和重传。</p>
+</li>
+<li><p>动态调度算法：ELE使用先进的动态调度算法来确保低延迟。这个算法基于每个数据包的优先级和目标节点的负载来动态地分配带宽。</p>
+</li>
+<li><p>基于PFC的流量控制：ELE使用基于PFC（Priority Flow Control）的流量控制机制来确保低延迟和低丢包率。这个机制可以在交换机之间协调流量，从而防止拥塞和丢包。</p>
+<p>以太网Pause机制能够实现网络不丢包的要求,但它会阻止一条链路上的所有流量,PFC是对Pause机制的一种增强。PFC可以在一条以太物理链路上创建8个独立的虚拟链路,并允许单独暂停和重启其中任意一条虚拟链路。这一方法使网络能够为单个虚拟链路创建无丢包类别的服务,使其能够与同一接口上的其他类型的流量共存。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="FC传输IP"><a href="#FC传输IP" class="headerlink" title="FC传输IP"></a>FC传输IP</h2><h3 id="IPFC"><a href="#IPFC" class="headerlink" title="IPFC"></a>IPFC</h3><p>IPFC定义了如何通过光纤通道网络传送IP分组</p>
+<h1 id="NAS"><a href="#NAS" class="headerlink" title="NAS"></a>NAS</h1><p>NAS有文件操作和管理系统，面向文件管理；SAN功能仅仅为数据管理</p>
+<p>NAS相比<strong>文件服务器</strong>多了灾备、备份的设计</p>
+<h2 id="文件共享协议"><a href="#文件共享协议" class="headerlink" title="文件共享协议"></a>文件共享协议</h2><ul>
+<li><p>CIFS for Windows</p>
+<p>必须使用TCP/IP传输</p>
+<p>集成在系统里面</p>
+<p>有状态协议</p>
+</li>
+<li><p>NFS for Unix</p>
+<p>可选TCP、UDP传输</p>
+<p>必须额外安装软件</p>
+<p>无状态协议</p>
+</li>
+</ul>
+<h1 id="一般来说，性能的影响从几个方面讨论"><a href="#一般来说，性能的影响从几个方面讨论" class="headerlink" title="一般来说，性能的影响从几个方面讨论"></a><mark>一般来说，性能的影响从几个方面讨论</mark></h1><ul>
+<li><p>受主机性能影响</p>
+</li>
+<li><p>受网络性能影响</p>
+<p>身份认证</p>
+<p>路由交换性能</p>
+</li>
+<li><p>受特定设备或协议的特性的影响</p>
+</li>
+</ul>
+<hr>
+<h1 id="RAID技术"><a href="#RAID技术" class="headerlink" title="RAID技术"></a>RAID技术</h1><p>具有高可靠性、高性能性</p>
+<h2 id="三个重要技术"><a href="#三个重要技术" class="headerlink" title="三个重要技术"></a>三个重要技术</h2><ul>
+<li><p>镜像（高可靠性）</p>
+<p>一种冗余技术，多份备份防故障；同时多份数据还可以并行读数据，但不能并行<strong>写</strong>数据</p>
+</li>
+<li><p>数据条带（高性能性）</p>
+<p>数据条带技术将数据以<strong>块</strong>的方式分布存储在多个磁盘中,从而可以对数据进行并发处理。这样写入和读取数据就可以在多个磁盘上同时进行，并发产生非常高的聚合I/O</p>
+</li>
+<li><p>数据校验（高可靠性）</p>
+<p>一种冗余技术，可检测数据错误，在能力允许前提下进行数据重构，比镜像开销小</p>
+<p>海明校验码，异或校验码</p>
+</li>
+</ul>
+<h2 id="实现技术分类"><a href="#实现技术分类" class="headerlink" title="实现技术分类"></a><mark>实现技术分类</mark></h2><ul>
+<li><p>软RAID</p>
+<p>无独立RAID控制/处理芯片和I/O处理芯片，所有功能均由操作系统和CPU完成</p>
+</li>
+<li><p>硬RAID</p>
+<p>有专门的独立RAID控制/处理芯片和I/O处理芯片及阵列缓冲，性能最高</p>
+</li>
+<li><p>软硬RAID</p>
+<p>有独立RAID控制/处理芯片，但无I/O处理芯片</p>
+</li>
+</ul>
+<h2 id="级别分类"><a href="#级别分类" class="headerlink" title="级别分类"></a>级别分类</h2><h3 id="RAID0"><a href="#RAID0" class="headerlink" title="RAID0"></a>RAID0</h3><p>简单、无数据校验的<strong>数据条带化技术</strong>，需要的磁盘数n&gt;=1;</p>
+<p>不提供任何冗余策略，因此不提供可靠性，仅拉满性能</p>
+<h3 id="RAID1"><a href="#RAID1" class="headerlink" title="RAID1"></a>RAID1</h3><p><strong>镜像技术</strong>，盘数2n（n&gt;=1）,空间利用率为50%</p>
+<p>适合顺序读写性能要求高、对数据保护极为重视的应用</p>
+<h3 id="RAID2"><a href="#RAID2" class="headerlink" title="RAID2"></a>RAID2</h3><p>海明码<strong>校验</strong>技术，盘数n&gt;=3</p>
+<p>现实很少用</p>
+<h3 id="RAID3"><a href="#RAID3" class="headerlink" title="RAID3"></a>RAID3</h3><p>数据校验+数据条带</p>
+<p>校验码单独用一个盘来存储，至少需要盘数n&gt;=3，空间利用率为(n-1)/n</p>
+<h3 id="RAID4"><a href="#RAID4" class="headerlink" title="RAID4"></a>RAID4</h3><p>相似于RAID3，但条带化方式不一样，按照块的方式来组织数据</p>
+<h3 id="RAID5"><a href="#RAID5" class="headerlink" title="RAID5"></a>RAID5</h3><p>相似于RAID3，但是校验码是分散存储，不单独存于一个盘</p>
+<p>一般校验码的存储不会超过一个盘的容量，所以空间利用率一般为(n-2)/n</p>
+<p><strong>最常用</strong></p>
+<h3 id="RAID6"><a href="#RAID6" class="headerlink" title="RAID6"></a>RAID6</h3><p>镜像+数据校验+数据条带</p>
+<p>双重校验，对校验码也进行镜像操作</p>
+<p>n&gt;=4</p>
+<hr>
+<h2 id="组合等级"><a href="#组合等级" class="headerlink" title="组合等级"></a>组合等级</h2><h3 id="RAID00"><a href="#RAID00" class="headerlink" title="RAID00"></a>RAID00</h3><p>双层条带化</p>
+<h3 id="RAID10"><a href="#RAID10" class="headerlink" title="RAID10"></a>RAID10</h3><p>先镜像再条带化</p>
+<h3 id="RAID01"><a href="#RAID01" class="headerlink" title="RAID01"></a>RAID01</h3><p>先条带化再镜像</p>
+<p>一般来说,01可靠性比10高</p>
+<h2 id="RAID7"><a href="#RAID7" class="headerlink" title="RAID7"></a>RAID7</h2><ul>
+<li><p>有独立操作系统</p>
+</li>
+<li><p>异步I/O（每个盘都可以单独处理I/O命令），写入性能极强</p>
+</li>
+<li><p>自恢复，可管理备份与重建</p>
+</li>
+<li><p>成本高，保修期短</p>
+</li>
+<li><p>要有UPS配合保证意外断电时Cache中的数据顺利保存</p>
+<blockquote>
+<p>UPS电源技术是一种高质量、高可靠性的独立电源，是一种蓄电池静止型不间断供电装置。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="RAID-DP"><a href="#RAID-DP" class="headerlink" title="RAID-DP"></a>RAID-DP</h2><p>基于RAID6的双重校验，同时比RAID6（30%）更低的性能损失（2%）</p>
+<h2 id="后缀带E，Enhanced"><a href="#后缀带E，Enhanced" class="headerlink" title="后缀带E，Enhanced"></a>后缀带E，Enhanced</h2><p>添加了热冗余磁盘</p>
+<h2 id="其他类型-P135-136"><a href="#其他类型-P135-136" class="headerlink" title="其他类型 P135-136"></a>其他类型 P135-136</h2><p><img src="https://s2.loli.net/2023/04/04/E4zeg8GK6tSXL7w.png" alt=""></p>
+<p><img src="https://s2.loli.net/2023/04/04/QFuRTc4e1yJYM3s.png" alt=""></p>
+<h2 id="应用选择（基于可靠性、性能、成本）"><a href="#应用选择（基于可靠性、性能、成本）" class="headerlink" title="应用选择（基于可靠性、性能、成本）"></a>应用选择（基于可靠性、性能、成本）</h2><p><img src="https://s2.loli.net/2023/04/04/GjZeTEcO12DUVpX.png" alt=""></p>
+<h1 id="虚拟磁带库-VTL"><a href="#虚拟磁带库-VTL" class="headerlink" title="虚拟磁带库 VTL"></a>虚拟磁带库 VTL</h1><blockquote>
+<p>提一嘴：</p>
+<p>磁盘阵列要被使用，需要将其格式化成与使用它的操作系统兼容的文件系统，因此容易被再次破坏，安全隔离性低</p>
+</blockquote>
+<p><mark>虚拟磁带库同时兼具磁带库的安全性（但I/O慢）和磁盘阵列的高速性</mark>，内部介质还是独立冗余磁盘阵列（RAID），但是模拟的是磁带库的运行方式</p>
+<h2 id="备份软件型"><a href="#备份软件型" class="headerlink" title="备份软件型"></a>备份软件型</h2><p>用磁盘做备份缓存，然后一次性备份到物理磁带库中（类似于<code>git add</code>，<code>git commit</code>的流程）</p>
+<p>主机先连接到<strong>备份服务器</strong>，备份服务器再连到存储设备</p>
+<h2 id="应用服务器型"><a href="#应用服务器型" class="headerlink" title="应用服务器型"></a>应用服务器型</h2><p><strong>虚拟磁带库管理软件</strong>安装在一台独立的专用服务器，而后将该服务器以及<strong>连接的磁盘存储设备</strong>模拟成磁带库</p>
+<p>主机直接相连VTL</p>
+<h2 id="智能化专用型"><a href="#智能化专用型" class="headerlink" title="智能化专用型"></a>智能化专用型</h2><p>采用ARM结构的磁盘阵列，嵌入式实时系统</p>
+<h2 id="访问与备份基本流程"><a href="#访问与备份基本流程" class="headerlink" title="访问与备份基本流程"></a>访问与备份基本流程</h2><p><img src="https://s2.loli.net/2023/04/04/ecKrTljnd4XwOyo.png" alt=""></p>
+<ul>
+<li><p>可多个VTL之间互连</p>
+</li>
+<li><p>写入指令可由VTL直接给到物理磁带库；也可以由备份服务器发出，传递给到物理磁带库</p>
+</li>
+</ul>
+<h2 id="重复数据删除技术"><a href="#重复数据删除技术" class="headerlink" title="重复数据删除技术"></a>重复数据删除技术</h2><h3 id="SIS技术"><a href="#SIS技术" class="headerlink" title="SIS技术"></a>SIS技术</h3><p>粒度单位为文件或邮件，即删除重复的文件或邮件，重复文件可以减少到只保留单一的复制</p>
+<h3 id="块级（子文件）"><a href="#块级（子文件）" class="headerlink" title="块级（子文件）"></a>块级（子文件）</h3><p>粒度单位为数据块，更加精细；可以在不同的文件或应用中删除冗余数据块</p>
+<hr>
+<h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><ol>
+<li>特征选取：抗碰撞加密HASH值作为特征</li>
+<li>相同检测</li>
+<li>冗余消除</li>
+<li>数据保存</li>
+</ol>
+<h3 id="部署该技术可选择的方式"><a href="#部署该技术可选择的方式" class="headerlink" title="部署该技术可选择的方式"></a>部署该技术可选择的方式</h3><p>空间上</p>
+<ul>
+<li><p>源数据端</p>
+</li>
+<li><p>目标端（推荐）</p>
+</li>
+</ul>
+<p>时间上</p>
+<ul>
+<li><p>在线：边备份边重复数据删除（适合较小业务）</p>
+</li>
+<li><p>离线：数据传输到VTL后再做重复数据删除（适合中大规模业务）</p>
+</li>
+</ul>
+<h1 id="灾备技术"><a href="#灾备技术" class="headerlink" title="灾备技术"></a>灾备技术</h1><h2 id="数据备份技术"><a href="#数据备份技术" class="headerlink" title="数据备份技术"></a>数据备份技术</h2><blockquote>
+<p>数据级别</p>
+<p>服务器上的数据需要通过备份服务器才能再给到主机</p>
+</blockquote>
+<h3 id="本地备份异地灾备"><a href="#本地备份异地灾备" class="headerlink" title="本地备份异地灾备"></a><strong>本地</strong>备份<strong>异地</strong>灾备</h3><p>备份到物理磁带库之后<strong>依托交通工具</strong>运输到灾备中心（一般用于地市级灾备策略）</p>
+<h3 id="远程备份"><a href="#远程备份" class="headerlink" title="远程备份"></a>远程备份</h3><p>备份到物理磁带库之后<strong>依托IP网络</strong>传输到灾备中心（要求网络带宽较大）</p>
+<ul>
+<li><p>传统的</p>
+</li>
+<li><p>加入重复数据删除技术的</p>
+<ul>
+<li><p>基于目标端的（适用于省级中心与地级中心之间无网络条件限制的）</p>
+<p>有三个数据流</p>
+<p>1、生产中心生产的数据到虚拟带库的本地备份</p>
+<p>2、生产中心与灾备中心虚拟带库之间通过IP网络的远程备份</p>
+<p>3、灾备中心虚拟带库到物理带库的离线备份(如果有异地介质存放)</p>
+</li>
+<li><p>基于源端的（适用于省级中心与地级中心之间存在较低网络条件的）</p>
+<p>删除源生产数据文件的冗余数据段</p>
+<p>主要实现方式是在生产中心将生产原数据文件传输到<strong>本地的备份存储池</strong>内,存储池将数据文件拆分成小的数据段，通过段级重复数据删除后，备份管理软件只将包含新数据或修改数据的部分备份到<strong>灾备中心的备份存储池</strong>中,备份到灾备中心后的文件主要部分保持不变，实现了段级别增量备份</p>
+<p>若需要长期存储，则会将存储池内容转移到物理磁带库中</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="复制技术"><a href="#复制技术" class="headerlink" title="复制技术"></a>复制技术</h2><blockquote>
+<p><mark>应用级别+数据级别</mark></p>
+<p>服务器上的应用数据可直接还给到主机</p>
+</blockquote>
+<h3 id="智能存储-P171"><a href="#智能存储-P171" class="headerlink" title="智能存储 P171"></a>智能存储 P171</h3><ul>
+<li><p>A-B（生产-同城：通过<strong>光纤FC</strong>传输）模式</p>
+</li>
+<li><p>A-B/A-C（生产-同城 / 生产-异地：通过<strong>IP专线</strong>传输）模式</p>
+</li>
+<li><p>A-B-C（生产-同城-异地）模式</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/04/12/cQJteSEHkXwzD69.png" alt=""></p>
+<h3 id="基于数据库"><a href="#基于数据库" class="headerlink" title="基于数据库"></a>基于数据库</h3><p>灾备中心可配置与生产中心<strong>异构</strong>的存储设备</p>
+<p><strong>应用级</strong>灾备模式</p>
+<h3 id="基于主机"><a href="#基于主机" class="headerlink" title="基于主机"></a>基于主机</h3><h4 id="数据卷镜像"><a href="#数据卷镜像" class="headerlink" title="数据卷镜像"></a>数据卷镜像</h4><ol>
+<li><p>在生产中心和灾备中心之间有<strong>光纤链路</strong></p>
+</li>
+<li><p>在生产中心的所有需要复制的服务器上部署专业存储管理软件,在灾备中心部署相应的存储系统和主机</p>
+</li>
+<li><p>利用专业存储管理软件将生产中心存储系统和灾备中心的存储系统组成一个镜像存储系统</p>
+</li>
+<li><p>在生产中心的主机发生一个写操作时,利用专业存储管理软件的镜像功能,将这个写操作通过光纤链路<strong>同时</strong>传输至灾备中心的存储系统</p>
+</li>
+<li><p>在两个中心的存储系统<strong>都完成</strong>写操作时后,此操作才真正完成</p>
+</li>
+</ol>
+<p>可实现业务故障、灾难下的自动切换功能，数据0丢失</p>
+<p>最昂贵</p>
+<h4 id="数据卷复制"><a href="#数据卷复制" class="headerlink" title="数据卷复制"></a>数据卷复制</h4><p>采用IP网络而非光纤，且采用异步而非同步</p>
+<p>生产中心完成写操作时，无法保证灾备中心完成了写操作</p>
+<p>要求生产中心主机与灾备中心主机之间的<mark>操作系统类型一致</mark></p>
+<p>秒级RPO</p>
+<h3 id="基于存储虚拟化"><a href="#基于存储虚拟化" class="headerlink" title="基于存储虚拟化"></a>基于存储虚拟化</h3><h4 id="带外数据、带外管理模式"><a href="#带外数据、带外管理模式" class="headerlink" title="带外数据、带外管理模式"></a>带外数据、带外管理模式</h4><p>虚拟化存储管理装置连接在SAN网络的<strong>旁路</strong>上，生产中心的数据写入或者管理操作可通过平常的IP网络直接写入虚拟化存储管理装置，不需要通过SAN网络</p>
+<h4 id="带内数据、带内管理模式"><a href="#带内数据、带内管理模式" class="headerlink" title="带内数据、带内管理模式"></a>带内数据、带内管理模式</h4><p>生产中心与虚拟化存储管理装置之间的连接需要经过SAN网络，SAN网络故障则会<strong>同时</strong>影响生产业务和管理平台</p>
+<h4 id="带内数据、带外管理模式"><a href="#带内数据、带外管理模式" class="headerlink" title="*带内数据、带外管理模式"></a>*带内数据、带外管理模式</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>带~数据</th>
+<th>带~管理</th>
+<th>SAN网络故障是否对生产业务有影响</th>
+<th>SAN网络故障是否对管理平台有影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外</td>
+<td>外</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>内</td>
+<td>外</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>内</td>
+<td>内</td>
+<td>有</td>
+<td>有</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h1 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h1><ul>
+<li><p>服务器虚拟化（操作系统虚拟化）</p>
+</li>
+<li><p>网络虚拟化</p>
+</li>
+<li><p>存储虚拟化</p>
+</li>
+<li><p>应用虚拟化</p>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/04/18/F3IuQm6zNl1tOSc.png" alt=""></p>
+<h2 id="服务器虚拟化"><a href="#服务器虚拟化" class="headerlink" title="服务器虚拟化"></a>服务器虚拟化</h2><p><mark>按照实现原理分类</mark></p>
+<ul>
+<li><p>基于CPU的虚拟化</p>
+</li>
+<li><p>基于硬件的虚拟化</p>
+</li>
+<li><p>基于操作系统的虚拟化</p>
+</li>
+</ul>
+<h3 id="基于CPU的虚拟化"><a href="#基于CPU的虚拟化" class="headerlink" title="基于CPU的虚拟化"></a>基于CPU的虚拟化</h3><p>将单CPU模拟成多CPU并行</p>
+<h3 id="基于硬件的虚拟化"><a href="#基于硬件的虚拟化" class="headerlink" title="基于硬件的虚拟化"></a>基于硬件的虚拟化</h3><h4 id="IBM的硬件虚拟化"><a href="#IBM的硬件虚拟化" class="headerlink" title="IBM的硬件虚拟化"></a>IBM的硬件虚拟化</h4><p>微分区技术，将单个CPU划分为若干个微分区，打破了以CPU为颗粒的限制</p>
+<h4 id="惠普的硬件虚拟化-P196"><a href="#惠普的硬件虚拟化-P196" class="headerlink" title="惠普的硬件虚拟化 P196"></a>惠普的硬件虚拟化 P196</h4><ul>
+<li><p>硬件分区</p>
+</li>
+<li><p>虚拟分区</p>
+</li>
+<li><p>资源分区</p>
+</li>
+</ul>
+<h3 id="基于操作系统的虚拟化"><a href="#基于操作系统的虚拟化" class="headerlink" title="基于操作系统的虚拟化"></a>基于操作系统的虚拟化</h3><p>允许多个虚拟机通过分配时间和资源带宽的方式，共享同一个底层物理服务器及其资源</p>
+<h3 id="现有虚拟化技术"><a href="#现有虚拟化技术" class="headerlink" title="现有虚拟化技术"></a>现有虚拟化技术</h3><h4 id="VMware"><a href="#VMware" class="headerlink" title="VMware"></a>VMware</h4><h5 id="常见套件-P197-205"><a href="#常见套件-P197-205" class="headerlink" title="常见套件 P197-205"></a><mark>常见套件</mark> P197-205</h5><ul>
+<li><p>ESX</p>
+<p>必须安装在主机上，提供虚拟机平台，控制分配给各个虚拟机的服务器资源</p>
+</li>
+<li><p><mark>vCenter</mark></p>
+<p>可以集中管理数百个ESX主机以及数千个虚拟机</p>
+<ol>
+<li><p>集中管理功能</p>
+</li>
+<li><p>性能监控功能</p>
+</li>
+<li><p>操作自动化</p>
+</li>
+<li><p>利用部署向导和虚拟机模板进行的快速置备</p>
+</li>
+<li><p>访问控制</p>
+</li>
+<li><p>编程接口</p>
+</li>
+</ol>
+</li>
+<li><p>Virtual SMP</p>
+<p>均衡处理器任务：提供了多处理器虚拟机以处理过重的工作负载，单个虚拟机可以同时使用主机服务器中的多个物理处理器或CPU，从而增强了虚拟机的性能。Virtual SMP 可协助询度非闲置的虚拟处理器，同时又允许处理器过载。</p>
+</li>
+<li><p>VMFS</p>
+<p>允许资源池中包含的多个ESX并行访问若干相同的文件来引导和运行虚拟机，并能够对虚拟机存储进行有效的虚拟化</p>
+</li>
+<li><p>VMotion</p>
+<p>数据迁移：支持在物理服务器之间实时迁移运行中的虚拟机，同时又可以避免宕机，确保连续的服务供应以及处理过程的完整性。借助虚拟机实时迁移技术，公司在执行硬件维护时无须安排宕机和中断业务操作。VMotion 还可以使资源池内的虚拟机持续进行自动优化，最大限度地提高硬件的利用率、灵活性和可用性。</p>
+<p>通过IP SAN进行实时迁移，虚拟机使用的网络也被底层ESX虚拟化．确保即使在迁移之后． 虚拟机的网络身份标识和网络连接也能保留下来。VMotion 会在此过程中管理虚拟MAC 地址。一旦目标虚拟机被激活， VMotion 就会对网络路由器执行ping指令，以确保它知道该虚拟MAC地址的新物理位置。</p>
+</li>
+<li><p><span id='drs'>DRS</span></p>
+<p>提高利用率，平衡各个虚拟机的工作负载</p>
+<p>VMware DRS 通过ESX Local Scheduler 和vCenter Global Scheduler 来进行操作</p>
+<blockquote>
+<p><strong>ESX Local Scheduler</strong> 可根据当前的工作负载来决定将主机中的哪些处理器用于虚拟机的执行，只要发现其他的主机处理器能够提供更多容量，便会重新分配虚拟机，也许每隔几毫秒便会重新分配一次。</p>
+<p><strong>vCenter Global Scheduler</strong> 则会在ESX 主机所在的整个群集内持续评估放置虚拟机的最佳位置。<br>Global Scheduler 会决定由哪个ESX 容纳新启动的虚拟机。如果其他ESX主机能够<br>提供更适合的资源集， Global Scheduler 就会使用DRS重新分配虚拟机。</p>
+<p>简单来说，“本地”负责检测，“全局”负责移动</p>
+</blockquote>
+<p>关联性与反关联性</p>
+<blockquote>
+<p>反关联性规则可使群集中各虚拟机始终在<strong>不同的物理服务器</strong>上运行，以便实现硬件冗余。</p>
+<p>关联性规则可使两个具有内部联网要求的虚拟机始终位于<strong>同一物理主机</strong>上。</p>
+</blockquote>
+</li>
+<li><p>HA</p>
+<p>故障切换集群</p>
+</li>
+<li><p>Consolidated Backup</p>
+<p>不经局域网的备份功能，实现了零宕机；同时备份功能也为HA作基础</p>
+<p>原理：创建快照</p>
+</li>
+</ul>
+<h5 id="资源池"><a href="#资源池" class="headerlink" title="资源池"></a>资源池</h5><blockquote>
+<p><a href="#drs">DRS</a>，还可以根据需求动态扩展资源限制  </p>
+<p>实现过程：自动找出具有足够资源的ESX主机来运行该虚拟机</p>
+</blockquote>
+<h5 id="优点-P205-210"><a href="#优点-P205-210" class="headerlink" title="优点 P205-210"></a>优点 P205-210</h5><h2 id="网络虚拟化"><a href="#网络虚拟化" class="headerlink" title="网络虚拟化"></a>网络虚拟化</h2><ul>
+<li><p>纵向</p>
+<p>分隔成多个不同的子网络</p>
+</li>
+<li><p>横向</p>
+<p>把网络节点进行虚拟化 P217</p>
+</li>
+</ul>
+<h2 id="存储虚拟化"><a href="#存储虚拟化" class="headerlink" title="存储虚拟化"></a>存储虚拟化</h2><p>虚拟存储 P218</p>
+<h2 id="应用虚拟化"><a href="#应用虚拟化" class="headerlink" title="应用虚拟化"></a>应用虚拟化</h2><ul>
+<li><p>应用软件的虚拟化</p>
+<p>将应用软件从操作系统中分离出来，通过自己压缩后的可执行文件夹来运行，而无须任何设备驱动程序或者与用户的文件系统相连</p>
+</li>
+<li><p>桌面的虚拟化</p>
+<p>不需要在每个用户的桌面上部署和管理多个软件客户端系统，所有应用客户端系统都将一次性地部署在数据中心的一台专用服务器上。这台服务器就放在应用服务器的前面。客户也将不需要通过网络向每个用户发送实际的数据，只有虚拟的客户端界面（屏幕图像更新、按键、鼠标移动等）被实际传送并显示在用户的计算机上。这个过程对最终用户是一目了然的，最终用户的感觉好像是实际的客户端软件正在他的桌面上运行一样。</p>
+</li>
+</ul>
+<h3 id="优点-P221"><a href="#优点-P221" class="headerlink" title="优点 P221"></a>优点 P221</h3><h1 id="虚拟化架构-P224"><a href="#虚拟化架构-P224" class="headerlink" title="虚拟化架构 P224"></a>虚拟化架构 P224</h1><p>从虚拟化的实现方式来看，虚拟化架构主要有两种形式： 宿主架构和裸金属架构。在<br>宿主架构中的虚拟机作为主机操作系统的一个进程来调度和管理，裸金属架构下则不存在<br>主机操作系统，它是以管理程序(Hypervisor) 直接运行在物理硬件之上，即使是有类似主机<br>操作系统的父分区或Domain，也是作为裸金属架构下的虚拟机存在的。宿主架构通常用<br>于PC上的虚拟化，如Window 、Virtual PC 、VMware Workstation 、Virtual Box 、Qemu等。<br>而裸金属架构通常用于服务器的虚拟化， 如文中提及的4种虚拟化技术。</p>
+<h2 id="宿主架构"><a href="#宿主架构" class="headerlink" title="宿主架构"></a>宿主架构</h2><h2 id="裸金属架构"><a href="#裸金属架构" class="headerlink" title="裸金属架构"></a>裸金属架构</h2><ul>
+<li><p>ESX</p>
+<p>首先启动Linux Kernel ，通过这个操作系统加载虚拟化组件</p>
+<p>最重要的是ESX 的Hypervisor组件，称为VMkernel.</p>
+<p>VMkernel会从Linux Kernel完全接管对硬件的控制权，而该Linux Kernel作为VMkernel的首个虚拟机，用于承载ESX的服务器控制台(Service Console) ，实现本地的一些管理功能</p>
+</li>
+<li><p>Hyper-V</p>
+</li>
+<li><p>KVM</p>
+</li>
+<li><p>XEN</p>
+</li>
+</ul>
+<hr>
+<h1 id="灾备系统设计"><a href="#灾备系统设计" class="headerlink" title="灾备系统设计"></a>灾备系统设计</h1><h2 id="CDP-持续数据保护"><a href="#CDP-持续数据保护" class="headerlink" title="CDP 持续数据保护"></a>CDP 持续数据保护</h2><p>有变化就备份，RPO（恢复点目标）相当于0</p>
+<h2 id="医院主要系统"><a href="#医院主要系统" class="headerlink" title="医院主要系统"></a>医院主要系统</h2><ul>
+<li><p>HIS 医院信息系统</p>
+</li>
+<li><p>LIMS 医院检验系统</p>
+</li>
+<li><p>PACS 影像归档和通信系统</p>
+</li>
+</ul>
+<h2 id="大型灾备场景"><a href="#大型灾备场景" class="headerlink" title="大型灾备场景"></a>大型灾备场景</h2><p>两地三中心</p>
+<p>同地中心：数据双活，互为同步</p>
+<p>异地灾备中心：数据复制</p>
+<h1 id="Google-GFS"><a href="#Google-GFS" class="headerlink" title="Google GFS"></a>Google GFS</h1><p>GFS将整个系统的节点分为三类角色：Client（客户端）、Master（主服务器）和Chunk Server（数据块服务器）</p>
+<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><p>master—主控服务器</p>
+<p><img src="https://s2.loli.net/2023/04/25/nAkEpyfIFWjJ2Uw.png" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zi0wi15on.top">zi0wi15on</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zi0wi15on.top/2023/02/28/20230228-%E3%80%8A%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E3%80%8B-NoteDown-Weekly/">https://zi0wi15on.top/2023/02/28/20230228-%E3%80%8A%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E3%80%8B-NoteDown-Weekly/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zi0wi15on.top" target="_blank">Bonjour Hacker</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8/">数据存储介质</a><a class="post-meta__tags" href="/tags/%E7%81%BE%E5%A4%87%E6%8A%80%E6%9C%AF/">灾备技术</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/02/28/vcXfduEBKyoMAxH.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/28/20230228-Vim-NoteDown/" title="Vim NoteDown"><img class="cover" src="https://s2.loli.net/2023/02/28/doHczipZVjTL3an.jpg" onerror="onerror=null;src='/personal/404.png'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vim NoteDown</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/28/20230228-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-NoteDown/" title="汇编语言 NoteDown"><img class="cover" src="https://s2.loli.net/2023/02/28/efg32QDTZWvJokS.png" onerror="onerror=null;src='/personal/404.png'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">汇编语言 NoteDown</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%AD%98%E5%82%A8%E7%BB%84%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">常见存储组件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">常见存储介质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">存储网络分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%BF%9E%E6%8E%A5%E5%AD%98%E5%82%A8%EF%BC%88DAS%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">直接连接存储（DAS）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.1.1.</span> <span class="toc-text">常见接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">3.1.2.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%AD%98%E5%82%A8%EF%BC%88NAS%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">网络连接存储（NAS）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81"><span class="toc-number">3.2.1.</span> <span class="toc-text">常见</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%8C%BA%E5%9F%9F%E7%BD%91%E7%BB%9C%EF%BC%88SAN%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">存储区域网络（SAN）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E7%BA%A7%E7%AE%A1%E7%90%86"><span class="toc-number">3.4.</span> <span class="toc-text">数据分级管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF"><span class="toc-number">3.5.</span> <span class="toc-text">数据存储技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8B%AC%E7%AB%8B%E7%A3%81%E7%9B%98%E5%86%97%E4%BD%99%E9%98%B5%E5%88%97%EF%BC%88RAID%EF%BC%89"><span class="toc-number">3.6.</span> <span class="toc-text">独立磁盘冗余阵列（RAID）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">3.7.</span> <span class="toc-text">存储性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E7%81%BE%E4%B8%8E%E5%A4%87%E4%BB%BD"><span class="toc-number">4.</span> <span class="toc-text">容灾与备份</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E5%8E%9F%E5%88%99"><span class="toc-number">4.1.</span> <span class="toc-text">数据备份原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E6%A0%87"><span class="toc-number">4.2.</span> <span class="toc-text">指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E7%81%BE%E7%BA%A7%E5%88%AB"><span class="toc-number">4.3.</span> <span class="toc-text">容灾级别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">5.</span> <span class="toc-text">数据中心</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%AE%BE%E5%A4%87"><span class="toc-number">5.1.</span> <span class="toc-text">关键设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">5.2.</span> <span class="toc-text">功能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%86%85%E7%BD%AE%E5%AD%98%E5%82%A8%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9F%EF%BC%88%E6%98%93%E8%80%83%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">传统内置存储遇到的问题？（易考）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98%E9%99%90%E5%88%B6"><span class="toc-number">6.1.</span> <span class="toc-text">硬盘限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E7%AE%B1%E9%99%90%E5%88%B6"><span class="toc-number">6.2.</span> <span class="toc-text">机箱限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-S%E6%9E%B6%E6%9E%84"><span class="toc-number">6.3.</span> <span class="toc-text">C&#x2F;S架构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1"><span class="toc-number">7.</span> <span class="toc-text">网络存储系统层次</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8"><span class="toc-number">8.</span> <span class="toc-text">存储介质</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E6%A2%B0%E7%A3%81%E7%9B%98"><span class="toc-number">8.1.</span> <span class="toc-text">机械磁盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E"><span class="toc-number">8.1.1.</span> <span class="toc-text">结构说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E5%8F%82%E6%95%B0%E6%B3%A8%E9%87%8A"><span class="toc-number">8.1.2.</span> <span class="toc-text">部分参数注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E8%AE%BF%E9%97%AE%E6%97%B6%E9%97%B4-%E6%9E%84%E6%88%90"><span class="toc-number">8.1.3.</span> <span class="toc-text">平均访问时间 构成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%8E%87"><span class="toc-number">8.1.4.</span> <span class="toc-text">数据传输率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">8.1.5.</span> <span class="toc-text">性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IOPS%EF%BC%88%E8%AE%A1%E7%AE%97%E9%A2%98%E6%98%93%E8%80%83%EF%BC%89"><span class="toc-number">8.1.5.1.</span> <span class="toc-text">IOPS（计算题易考）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98%E5%B8%B8%E7%94%A8%E6%8E%A5%E5%8F%A3"><span class="toc-number">8.1.6.</span> <span class="toc-text">硬盘常用接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSD%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98"><span class="toc-number">8.2.</span> <span class="toc-text">SSD固态硬盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%AD%98%E5%82%A8%E5%8D%95%E5%85%83%E5%88%86%E7%B1%BB"><span class="toc-number">8.2.1.</span> <span class="toc-text">基本存储单元分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95-%E5%A4%9APlane-NAND"><span class="toc-number">8.2.2.</span> <span class="toc-text">单&#x2F;多Plane NAND</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98-%E6%9C%89%E5%85%B3%E7%BC%93%E5%AD%98"><span class="toc-number">8.2.3.</span> <span class="toc-text">判断题-有关缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%A8%E6%8D%9F%E5%B9%B3%E8%A1%A1"><span class="toc-number">8.2.4.</span> <span class="toc-text">磨损平衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-number">8.2.5.</span> <span class="toc-text">垃圾回收</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E7%95%99%E7%A9%BA%E9%97%B4"><span class="toc-number">8.2.6.</span> <span class="toc-text">预留空间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%97%E7%B2%92%E5%AE%B9%E9%87%8F%E7%AE%97%E6%B3%95%E5%B7%AE%E5%BC%82"><span class="toc-number">8.2.6.1.</span> <span class="toc-text">颗粒容量算法差异</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%85%A5%E6%94%BE%E5%A4%A7"><span class="toc-number">8.2.7.</span> <span class="toc-text">写入放大</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD-P46-48"><span class="toc-number">8.2.8.</span> <span class="toc-text">其他功能 P46-48</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSD-VS-HDD-P48"><span class="toc-number">8.3.</span> <span class="toc-text">SSD VS HDD P48</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7"><span class="toc-number">9.</span> <span class="toc-text">卷</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IPMI-%E6%99%BA%E8%83%BD%E5%B9%B3%E5%8F%B0%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3-P56"><span class="toc-number">10.</span> <span class="toc-text">IPMI 智能平台管理接口 P56</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A2%9E%E9%87%8F%E5%AF%BC%E5%87%BA-P62"><span class="toc-number">11.</span> <span class="toc-text">数据库的增量导出 P62</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%B7%E5%A4%87%E4%BB%BD%E3%80%81%E7%83%AD%E5%A4%87%E4%BB%BD"><span class="toc-number">12.</span> <span class="toc-text">冷备份、热备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DAS%E5%AD%98%E5%82%A8%E5%BD%A2%E6%80%81%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E"><span class="toc-number">13.</span> <span class="toc-text">DAS存储形态的一些说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SAN%E6%8A%80%E6%9C%AF"><span class="toc-number">14.</span> <span class="toc-text">SAN技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SAN%E5%85%B8%E5%9E%8B%E7%BB%84%E7%BD%91%EF%BC%88%E6%98%93%E8%80%83%EF%BC%89P71"><span class="toc-number">14.1.</span> <span class="toc-text">SAN典型组网（易考）P71</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAN%E7%BB%84%E4%BB%B6"><span class="toc-number">14.2.</span> <span class="toc-text">SAN组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAN%E7%89%B9%E7%82%B9"><span class="toc-number">14.3.</span> <span class="toc-text">SAN特点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FC%E5%8D%8F%E8%AE%AE"><span class="toc-number">15.</span> <span class="toc-text">FC协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FC%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="toc-number">15.1.</span> <span class="toc-text">FC拓扑结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FC%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="toc-number">15.2.</span> <span class="toc-text">FC协议栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SCSI%E6%98%AFFC%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%AD%90%E9%9B%86"><span class="toc-number">15.3.</span> <span class="toc-text">SCSI是FC协议的子集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FC%E4%BA%A4%E6%8D%A2%E7%AB%AF%E5%8F%A3-P76"><span class="toc-number">15.4.</span> <span class="toc-text">FC交换端口 P76</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FC-HBA%E5%8D%A1%E7%9A%84WWN"><span class="toc-number">15.5.</span> <span class="toc-text">FC HBA卡的WWN</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SCSI%E5%8D%8F%E8%AE%AE"><span class="toc-number">16.</span> <span class="toc-text">SCSI协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-number">16.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80"><span class="toc-number">16.2.</span> <span class="toc-text">寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%8F%8F%E8%BF%B0%E5%9D%97CDB-P83%E5%8F%82%E8%80%83"><span class="toc-number">16.3.</span> <span class="toc-text">命令描述块CDB P83参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%A0%81"><span class="toc-number">16.3.1.</span> <span class="toc-text">操作码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0"><span class="toc-number">16.3.2.</span> <span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%A0%81"><span class="toc-number">16.3.3.</span> <span class="toc-text">控制码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB-%E5%86%99%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B-P84"><span class="toc-number">16.4.</span> <span class="toc-text">读&#x2F;写操作过程 P84</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SCSI%E6%8E%A5%E5%8F%A3%E7%B1%BB%E5%9E%8B-P85"><span class="toc-number">16.5.</span> <span class="toc-text">SCSI接口类型 P85</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iSCSI%E5%8D%8F%E8%AE%AE"><span class="toc-number">16.6.</span> <span class="toc-text">iSCSI协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iSCSI%E7%9A%84%E5%8F%91%E8%B5%B7%E7%AB%AF%E5%92%8C%E7%9B%AE%E6%A0%87%E7%AB%AF"><span class="toc-number">16.7.</span> <span class="toc-text">iSCSI的发起端和目标端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#I-O%E8%AF%B7%E6%B1%82%E7%9A%84%E5%90%AF%E5%8A%A8%E8%AE%BE%E5%A4%87"><span class="toc-number">16.7.1.</span> <span class="toc-text">I&#x2F;O请求的启动设备</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FC%E4%B8%8ETCP%E5%8D%8F%E8%AE%AE%E8%9E%8D%E5%90%88"><span class="toc-number">17.</span> <span class="toc-text">FC与TCP协议融合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IP%E4%BC%A0%E8%BE%93FC"><span class="toc-number">17.1.</span> <span class="toc-text">IP传输FC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FCIP-%E5%9F%BA%E4%BA%8EIP%E7%9A%84%E5%85%89%E7%BA%A4%E9%80%9A%E9%81%93"><span class="toc-number">17.1.1.</span> <span class="toc-text">FCIP    基于IP的光纤通道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="toc-number">17.1.1.1.</span> <span class="toc-text">协议栈</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iFCP-Internet%E5%85%89%E7%BA%A4%E4%BF%A1%E9%81%93%E5%8D%8F%E8%AE%AE"><span class="toc-number">17.1.2.</span> <span class="toc-text">iFCP    Internet光纤信道协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCoE"><span class="toc-number">17.1.3.</span> <span class="toc-text">FCoE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FC%E4%BC%A0%E8%BE%93IP"><span class="toc-number">17.2.</span> <span class="toc-text">FC传输IP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IPFC"><span class="toc-number">17.2.1.</span> <span class="toc-text">IPFC</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NAS"><span class="toc-number">18.</span> <span class="toc-text">NAS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%E5%8D%8F%E8%AE%AE"><span class="toc-number">18.1.</span> <span class="toc-text">文件共享协议</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%9D%A5%E8%AF%B4%EF%BC%8C%E6%80%A7%E8%83%BD%E7%9A%84%E5%BD%B1%E5%93%8D%E4%BB%8E%E5%87%A0%E4%B8%AA%E6%96%B9%E9%9D%A2%E8%AE%A8%E8%AE%BA"><span class="toc-number">19.</span> <span class="toc-text">一般来说，性能的影响从几个方面讨论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RAID%E6%8A%80%E6%9C%AF"><span class="toc-number">20.</span> <span class="toc-text">RAID技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E6%8A%80%E6%9C%AF"><span class="toc-number">20.1.</span> <span class="toc-text">三个重要技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB"><span class="toc-number">20.2.</span> <span class="toc-text">实现技术分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB"><span class="toc-number">20.3.</span> <span class="toc-text">级别分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID0"><span class="toc-number">20.3.1.</span> <span class="toc-text">RAID0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID1"><span class="toc-number">20.3.2.</span> <span class="toc-text">RAID1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID2"><span class="toc-number">20.3.3.</span> <span class="toc-text">RAID2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID3"><span class="toc-number">20.3.4.</span> <span class="toc-text">RAID3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID4"><span class="toc-number">20.3.5.</span> <span class="toc-text">RAID4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID5"><span class="toc-number">20.3.6.</span> <span class="toc-text">RAID5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID6"><span class="toc-number">20.3.7.</span> <span class="toc-text">RAID6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E7%AD%89%E7%BA%A7"><span class="toc-number">20.4.</span> <span class="toc-text">组合等级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID00"><span class="toc-number">20.4.1.</span> <span class="toc-text">RAID00</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID10"><span class="toc-number">20.4.2.</span> <span class="toc-text">RAID10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAID01"><span class="toc-number">20.4.3.</span> <span class="toc-text">RAID01</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RAID7"><span class="toc-number">20.5.</span> <span class="toc-text">RAID7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RAID-DP"><span class="toc-number">20.6.</span> <span class="toc-text">RAID-DP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BC%80%E5%B8%A6E%EF%BC%8CEnhanced"><span class="toc-number">20.7.</span> <span class="toc-text">后缀带E，Enhanced</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%B1%BB%E5%9E%8B-P135-136"><span class="toc-number">20.8.</span> <span class="toc-text">其他类型 P135-136</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E9%80%89%E6%8B%A9%EF%BC%88%E5%9F%BA%E4%BA%8E%E5%8F%AF%E9%9D%A0%E6%80%A7%E3%80%81%E6%80%A7%E8%83%BD%E3%80%81%E6%88%90%E6%9C%AC%EF%BC%89"><span class="toc-number">20.9.</span> <span class="toc-text">应用选择（基于可靠性、性能、成本）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E7%A3%81%E5%B8%A6%E5%BA%93-VTL"><span class="toc-number">21.</span> <span class="toc-text">虚拟磁带库 VTL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E8%BD%AF%E4%BB%B6%E5%9E%8B"><span class="toc-number">21.1.</span> <span class="toc-text">备份软件型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9E%8B"><span class="toc-number">21.2.</span> <span class="toc-text">应用服务器型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E5%8C%96%E4%B8%93%E7%94%A8%E5%9E%8B"><span class="toc-number">21.3.</span> <span class="toc-text">智能化专用型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E4%B8%8E%E5%A4%87%E4%BB%BD%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">21.4.</span> <span class="toc-text">访问与备份基本流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E6%8A%80%E6%9C%AF"><span class="toc-number">21.5.</span> <span class="toc-text">重复数据删除技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SIS%E6%8A%80%E6%9C%AF"><span class="toc-number">21.5.1.</span> <span class="toc-text">SIS技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E7%BA%A7%EF%BC%88%E5%AD%90%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">21.5.2.</span> <span class="toc-text">块级（子文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">21.5.3.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E8%AF%A5%E6%8A%80%E6%9C%AF%E5%8F%AF%E9%80%89%E6%8B%A9%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">21.5.4.</span> <span class="toc-text">部署该技术可选择的方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%81%BE%E5%A4%87%E6%8A%80%E6%9C%AF"><span class="toc-number">22.</span> <span class="toc-text">灾备技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E6%8A%80%E6%9C%AF"><span class="toc-number">22.1.</span> <span class="toc-text">数据备份技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%A4%87%E4%BB%BD%E5%BC%82%E5%9C%B0%E7%81%BE%E5%A4%87"><span class="toc-number">22.1.1.</span> <span class="toc-text">本地备份异地灾备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E5%A4%87%E4%BB%BD"><span class="toc-number">22.1.2.</span> <span class="toc-text">远程备份</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">22.2.</span> <span class="toc-text">复制技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E5%AD%98%E5%82%A8-P171"><span class="toc-number">22.2.1.</span> <span class="toc-text">智能存储 P171</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">22.2.2.</span> <span class="toc-text">基于数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E4%B8%BB%E6%9C%BA"><span class="toc-number">22.2.3.</span> <span class="toc-text">基于主机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%E9%95%9C%E5%83%8F"><span class="toc-number">22.2.3.1.</span> <span class="toc-text">数据卷镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%A4%8D%E5%88%B6"><span class="toc-number">22.2.3.2.</span> <span class="toc-text">数据卷复制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%AD%98%E5%82%A8%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">22.2.4.</span> <span class="toc-text">基于存储虚拟化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E5%A4%96%E6%95%B0%E6%8D%AE%E3%80%81%E5%B8%A6%E5%A4%96%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-number">22.2.4.1.</span> <span class="toc-text">带外数据、带外管理模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E5%86%85%E6%95%B0%E6%8D%AE%E3%80%81%E5%B8%A6%E5%86%85%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-number">22.2.4.2.</span> <span class="toc-text">带内数据、带内管理模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E5%86%85%E6%95%B0%E6%8D%AE%E3%80%81%E5%B8%A6%E5%A4%96%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-number">22.2.4.3.</span> <span class="toc-text">*带内数据、带外管理模式</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF"><span class="toc-number">23.</span> <span class="toc-text">虚拟化技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">23.1.</span> <span class="toc-text">服务器虚拟化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ECPU%E7%9A%84%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">23.1.1.</span> <span class="toc-text">基于CPU的虚拟化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%A1%AC%E4%BB%B6%E7%9A%84%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">23.1.2.</span> <span class="toc-text">基于硬件的虚拟化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IBM%E7%9A%84%E7%A1%AC%E4%BB%B6%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">23.1.2.1.</span> <span class="toc-text">IBM的硬件虚拟化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%A0%E6%99%AE%E7%9A%84%E7%A1%AC%E4%BB%B6%E8%99%9A%E6%8B%9F%E5%8C%96-P196"><span class="toc-number">23.1.2.2.</span> <span class="toc-text">惠普的硬件虚拟化 P196</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">23.1.3.</span> <span class="toc-text">基于操作系统的虚拟化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF"><span class="toc-number">23.1.4.</span> <span class="toc-text">现有虚拟化技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#VMware"><span class="toc-number">23.1.4.1.</span> <span class="toc-text">VMware</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%A5%97%E4%BB%B6-P197-205"><span class="toc-number">23.1.4.1.1.</span> <span class="toc-text">常见套件 P197-205</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%B1%A0"><span class="toc-number">23.1.4.1.2.</span> <span class="toc-text">资源池</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-P205-210"><span class="toc-number">23.1.4.1.3.</span> <span class="toc-text">优点 P205-210</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">23.2.</span> <span class="toc-text">网络虚拟化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">23.3.</span> <span class="toc-text">存储虚拟化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">23.4.</span> <span class="toc-text">应用虚拟化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-P221"><span class="toc-number">23.4.1.</span> <span class="toc-text">优点 P221</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%8C%96%E6%9E%B6%E6%9E%84-P224"><span class="toc-number">24.</span> <span class="toc-text">虚拟化架构 P224</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BF%E4%B8%BB%E6%9E%B6%E6%9E%84"><span class="toc-number">24.1.</span> <span class="toc-text">宿主架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%B8%E9%87%91%E5%B1%9E%E6%9E%B6%E6%9E%84"><span class="toc-number">24.2.</span> <span class="toc-text">裸金属架构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%81%BE%E5%A4%87%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-number">25.</span> <span class="toc-text">灾备系统设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CDP-%E6%8C%81%E7%BB%AD%E6%95%B0%E6%8D%AE%E4%BF%9D%E6%8A%A4"><span class="toc-number">25.1.</span> <span class="toc-text">CDP 持续数据保护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BB%E9%99%A2%E4%B8%BB%E8%A6%81%E7%B3%BB%E7%BB%9F"><span class="toc-number">25.2.</span> <span class="toc-text">医院主要系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E5%9E%8B%E7%81%BE%E5%A4%87%E5%9C%BA%E6%99%AF"><span class="toc-number">25.3.</span> <span class="toc-text">大型灾备场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Google-GFS"><span class="toc-number">26.</span> <span class="toc-text">Google GFS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MapReduce"><span class="toc-number">27.</span> <span class="toc-text">MapReduce</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/02/28/vcXfduEBKyoMAxH.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 By zi0wi15on</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.zi0wi15on.top/">back to HOME</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="8485130843" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-autoplay="true" data-preload="none" data-order="random" data-listfolded="true" data-lrctype="-1"> </div><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script> - <script type="text/x-mathjax-config">MathJax.Hub.Config({menuSettings:{zoom:"None"},showMathMenu:false,jax:["input/TeX","output/CommonHTML"],extensions:["tex2jax.js"],TeX:{extensions:["AMSmath.js","AMSsymbols.js"],equationNumbers:{autoNumber:"AMS"}},tex2jax:{inlineMath:[["\\(", "\\)"]],displayMath:[["\\[", "\\]"]]}});</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="EXP,payload,shellcode,社会工程学,蓝队,CTF,AWD,Misc,Crypto,Reverse,Pwn,Mobile,Flag,注入攻击,BruteForce,rockyou,脱壳,撞库,免杀,反序列化,应急响应,代码审计,数字取证,可信计算只因,whois,POC测试,XSS,SSRF,钓鲸,DDoS,WebShell,访问控制,CMS,溯源反制,IPS,CA,IoT,Hook,kernel,RSA,AES,Hash,CISP,0day,Petya,log4j,RCE,逻辑漏洞,OWASP Top10,SSRF,XSS,永恒之蓝,熊猫烧香,BurpSuite,Hashcat,Nessus,Nmap,MSF,OllyDbg,IDA,PEiD,BlackArch,Kali,Mr.Robot,凯文·米特尼克,zi0wi15on" data-fontsize="20px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="docsearch-wrap"><div id="docsearch" style="display:none"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css/dist/style.min.css"/><script src="https://cdn.jsdelivr.net/npm/@docsearch/js/dist/umd/index.min.js"></script><script>(() => {
+  docsearch(Object.assign({
+    appId: 'T36950RIKQ',
+    apiKey: '31638accf024d9218397ec9e3d5fb686',
+    indexName: 'zi0wi15on',
+    container: '#docsearch',
+  }, null))
+
+
+  const searchClickFn = () => {
+    document.querySelector('#search-button > .search').addEventListener('click', () => {
+      document.querySelector('.DocSearch-Button').click()
+    })
+  }
+
+  searchClickFn()
+  window.addEventListener('pjax:complete', searchClickFn)
+})()</script></div></body></html>

